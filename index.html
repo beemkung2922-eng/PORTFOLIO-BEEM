@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Archive - Redesigned</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           1. CSS Reset & Global Styles
+           ========================================= */
+        :root {
+            --accent-color: #ff7a00;
+            --bg-dark: #121212;
+            --bg-darker: #0a0a0a;
+            --text-light: #ffffff;
+            --text-gray: #aaaaaa;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Utility Classes for Typography */
+        .font-rock { font-family: 'Rock Salt', cursive; }
+        .font-prompt { font-family: 'Prompt', sans-serif; }
+        .font-syne { font-family: 'Syne', sans-serif; }
+        .text-accent { color: var(--accent-color); }
+        .uppercase { text-transform: uppercase; }
+
+        /* =========================================
+           2. Hero Section & Nav
+           ========================================= */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            background-image: url('ytkty.png'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 2rem; 
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(to top, var(--bg-dark) 0%, transparent 50%);
+        }
+        
+        .nav-tags {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .tag {
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #000;
+            font-family: inherit; 
+            text-transform: none; 
+            letter-spacing: normal;
+        }
+        .tag-home { background-color: #ff7a00; }
+        .tag-archive { background-color: #4CAF50; color: #fff; } 
+        .tag-about { background-color: #a0c4ff; }
+        
+        .hero-title-wrapper {
+            z-index: 2;
+        }
+        .hero-title {
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-size: 21vw;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -3px;
+            color: #ff7a00;
+            text-align: center;
+            white-space: nowrap;
+            margin-bottom: -5vh;
+            width: 100%;
+            text-shadow: none; 
+        }
+
+        /* =========================================
+           3. About Section (Redesigned)
+           ========================================= */
+        .about-section {
+            background-color: var(--text-light);
+            color: var(--bg-dark);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 40px;
+            width: 2px;
+            height: 100%;
+            background-color: var(--accent-color);
+            opacity: 0.3;
+        }
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-left: 60px; 
+        }
+        .about-title {
+            font-size: 3rem; 
+            color: var(--bg-dark);
+            transform: rotate(-2deg); 
+            margin-bottom: 3rem;
+            text-align: left; 
+        }
+        .about-text {
+            font-size: 1.15rem;
+            color: #333;
+            max-width: 800px;
+            text-align: left; 
+        }
+        .about-highlight {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        .dot-accent {
+            color: var(--accent-color); 
+        }
+        .text-orange {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* =========================================
+           4. Work Section
+           ========================================= */
+        .work-section {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 8rem 0;
+            margin: 0;
+        }
+        
+        .work-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 6rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .cross-decor {
+            color: #ff7a00; 
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            margin: 1.5rem 0;
+        }
+        .title-rock-salt {
+            font-family: 'Rock Salt', cursive;
+            text-transform: none;
+            font-size: 4rem;
+            color: #ffffff;
+            transform: rotate(-3deg);
+            display: inline-block;
+            margin: 0;
+        }
+
+        .project-block {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1300px;
+            margin: 0 auto 3rem auto; 
+            padding: 0 2rem;
+        }
+        .project-block.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .project-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        .project-gallery {
+            flex: 1.5;
+        }
+
+        .work-subtitle {
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        .work-main-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        .work-desc {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        .mini-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .mini-gallery-grid img {
+            width: 100%;
+            height: 300px; 
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: grayscale(30%); 
+        }
+        .mini-gallery-grid:hover img {
+            filter: grayscale(0%); 
+        }
+        .mini-gallery-grid img:hover {
+            transform: scale(1.05);
+            z-index: 2;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        /* =========================================
+           5. Stacked Gallery (รูปเรียงลงมา + เอฟเฟกต์เด้ง)
+           ========================================= */
+        .stacked-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 8rem auto;
+            padding: 0 2rem;
+        }
+
+        .stacked-gallery img {
+            width: 100%;
+            height: auto;
+            max-height: 900px;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .stacked-gallery img:hover {
+            transform: translateY(-20px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        /* =========================================
+           7. Menu Grid Gallery (เรียง 3x3)
+           ========================================= */
+        .menu-grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            max-width: 1200px;
+            margin: 0 auto 8rem auto;
+            padding: 0 2rem;
+        }
+
+        .menu-grid-gallery img {
+            width: 100%;
+            height: auto; 
+            object-fit: contain; 
+            border-radius: 8px;
+            background-color: var(--text-light); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .menu-grid-gallery img:hover {
+            transform: translateY(-15px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .menu-grid-gallery {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px;
+            }
+        }
+        @media (max-width: 480px) {
+            .menu-grid-gallery {
+                grid-template-columns: 1fr; 
+            }
+        }
+
+        /* =========================================
+           8. Event Gallery (Masonry Columns + Vertical Scroll)
+           ========================================= */
+        .event-gallery-wrapper {
+            max-width: 1200px;
+            height: 800px; 
+            margin: 0 auto 8rem auto;
+            padding: 20px;
+            overflow-y: auto; 
+            background-color: #1a1a1a; 
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .event-gallery-wrapper::-webkit-scrollbar { width: 10px; }
+        .event-gallery-wrapper::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 10px; }
+        .event-gallery-wrapper::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
+
+        .event-columns {
+            column-count: 4; 
+            column-gap: 20px; 
+        }
+
+        .event-item {
+            break-inside: avoid; 
+            margin-bottom: 20px; 
+        }
+
+        .event-item img {
+            width: 100%; 
+            height: auto; 
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .event-item img:hover {
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            cursor: pointer;
+            position: relative; 
+            z-index: 2;
+        }
+
+        @media (max-width: 1024px) {
+            .event-columns { column-count: 3; }
+            .event-gallery-wrapper { height: 600px; }
+        }
+        @media (max-width: 768px) {
+            .event-columns { column-count: 2; }
+        }
+        @media (max-width: 480px) {
+            .event-columns { column-count: 1; } 
+            .event-gallery-wrapper { height: 500px; padding: 10px; }
+        }
+
+        /* =========================================
+           9. Lightbox Modal (คลิกรูปลอยขยายใหญ่)
+           ========================================= */
+        .modal {
+            position: fixed;
+            z-index: 9999; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); 
+            backdrop-filter: blur(5px); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1; 
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: scale(0.8); 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1); 
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-color); 
+        }
+
+        /* =========================================
+           5. Poster Infinite Scroll
+           ========================================= */
+        .work-gallery-wrapper {
+            width: 100vw;
+            max-width: 100%;
+            background-color: #121212; 
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 50px 0;
+            margin-bottom: 5rem;
+            border-top: 1px solid #121212;
+            border-bottom: 1px solid #12121222;
+        }
+        .work-gallery-horizontal {
+            display: flex;
+            overflow-x: auto; 
+            scroll-behavior: auto; 
+            -webkit-overflow-scrolling: touch;
+        }
+        .work-gallery-horizontal::-webkit-scrollbar { display: none; }
+        .gallery-group {
+            display: flex;
+            gap: 15px;
+            padding-right: 15px;
+            flex-shrink: 0;
+            align-items: center;
+        }
+        .gallery-group img {
+            height: 500px;
+            width: auto;
+            max-width: none;
+            flex-shrink: 0;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* =========================================
+           6. Cinema Selects (Redesigned: Modern Grid Cards)
+           ========================================= */
+        .cinema-section {
+            background-color: var(--text-light);
+            color: var(--bg-dark);
+            padding: 8rem 2rem;
+            position: relative;
+        }
+        .cinema-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .cinema-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+            border-bottom: 2px solid var(--bg-dark);
+            padding-bottom: 1rem;
+        }
+        .cinema-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+        .cinema-subtitle {
+            font-family: 'Prompt', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cinema-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 30px;
+        }
+        .cinema-card {
+            background-color: #f4f4f4;
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .cinema-card:hover {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            transform: translateY(-10px);
+            border-color: var(--bg-dark);
+        }
+        .cinema-card:hover .cinema-meta { color: var(--text-gray); }
+        .cinema-card:hover .cinema-mood-tag { background-color: var(--accent-color); color: var(--bg-dark); }
+
+        .film-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        .cinema-meta {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .cinema-mood-tag {
+            background-color: #ddd;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .film-why {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            margin-top: auto; 
+            padding-top: 1.5rem;
+            border-top: 1px dashed #ccc;
+        }
+        .cinema-card:hover .film-why { border-color: #555; }
+
+        /* =========================================
+           7. CTA & Footer
+           ========================================= */
+        .cta-section {
+            background-color: var(--bg-dark);
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            padding: 8rem 2rem;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .cta-section::before, .cta-section::after {
+            content: '++++++++++++++++++++++++++++++++++++++';
+            position: absolute;
+            left: 0; width: 100%;
+            text-align: center;
+            color: #333;
+            letter-spacing: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .cta-section::before { top: 2rem; }
+        .cta-section::after { bottom: 2rem; }
+
+        .ticket {
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            padding: 4rem;
+            text-align: center;
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+            clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+        }
+        .ticket h2 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .subscribe-btn {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 12px 40px;
+            border: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 1px;
+        }
+        .subscribe-btn:hover { transform: scale(1.05); }
+
+        .footer {
+            background-color: var(--bg-darker);
+            padding: 5rem 2rem 2rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        .footer-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 0.9;
+            color: #333; 
+        }
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+        .footer-col h4 {
+            font-family: 'Syne', sans-serif;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .footer-col a {
+            display: block;
+            color: var(--text-gray);
+            margin-bottom: 0.8rem;
+            font-family: 'Prompt', sans-serif;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 5rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* =========================================
+           8. Media Queries (Responsive)
+           ========================================= */
+        @media (max-width: 1024px) {
+            .project-block, .project-block.reverse {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .project-text, .project-gallery { flex: auto; width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 20vw; }
+            .nav-tags {
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%) scale(0.85);
+                transform-origin: top center;
+                width: max-content;
+            }
+
+            .about-section { padding: 4rem 1.5rem; }
+            .about-section::before { display: none; }
+            .about-container { padding-left: 0; }
+            .about-title { font-size: 3rem; text-align: center; transform: none; }
+            .about-text { text-align: center; }
+
+            .work-intro .title-rock-salt { font-size: 3.5rem; }
+            .work-main-title { font-size: 2rem; }
+            
+            .mini-gallery-grid img { height: 200px; }
+            .gallery-group img { height: 350px; }
+
+            .cinema-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .cinema-title { font-size: 3rem; }
+            .cinema-grid { grid-template-columns: 1fr; } 
+            .cinema-card { padding: 2rem; }
+
+            .ticket { padding: 2rem; clip-path: none; border-radius: 20px;}
+            .ticket h2 { font-size: 2rem; }
+
+            .footer-content { flex-direction: column; }
+            .footer-links { flex-wrap: wrap; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="nav-tags">
+            <span class="tag tag-home">Home</span>
+            <span class="tag tag-archive">Archive</span>
+            <span class="tag tag-about">About</span>
+        </div>
+        <div class="hero-title-wrapper">
+             <h1 class="hero-title">Portfolio</h1>
+        </div>
+    </header>
+
+   <section class="about-section">
+        <div class="about-container">
+            <h2 class="about-title font-rock">About ME<span class="dot-accent">.</span></h2> 
+            <div class="about-text font-prompt">
+                <p>
+                    สวัสดีครับผม <span class="text-orange">นายพงศธร เพ็งขันธ์ (บีม)</span> นักศึกษาคณะบริหารธุรกิจ สาขา Digital Startup <br>จากมหาวิทยาลัยเทคโนโลยีราชมงคลกรุงเทพ
+                </p>
+                <br>
+                <p>
+                    จุดเริ่มต้นในการทำงานกราฟิกของผม มาจากการที่ต้องทำโปรเจกต์ธุรกิจในมหาลัย แล้วผมมักจะอาสารับหน้าที่ดูแลเรื่องภาพลักษณ์แบรนด์และการออกแบบ จนรู้ตัวว่าอยากเอาดีด้านนี้เป็นอาชีพครับ ผมเชื่อว่าการที่ผมมีพื้นฐานด้านการตลาดและ Startup จะช่วยให้ผมมองงานกราฟิกในมุมมองที่กว้างขึ้น และตอนนี้ผมพร้อมมากๆ ที่จะเรียนรู้และเติบโตในสายงาน <span class="text-orange">Graphic Design</span> ครับ
+                </p>
+                <br>
+                <p>
+                    แม้เส้นทางการศึกษาของผมจะเริ่มต้นที่สายธุรกิจ แต่นั่นกลับเป็นจุดแข็งที่ทำให้ผม <span class="text-orange">"เข้าใจการออกแบบเพื่อตอบโจทย์ธุรกิจ"</span> ผมเชื่อว่ากราฟิกที่ดีไม่ใช่แค่สวยงาม แต่ต้องสื่อสารและสร้าง Brand Identity ที่แข็งแกร่งได้ 
+                </p>
+                <br>
+                <p>
+                    ผมมีความรู้ด้านการจัดวางองค์ประกอบศิลป์ ถนัดการใช้โปรแกรมอย่าง <span class="text-orange">Photoshop และ Illustrator</span> รวมถึงมีประสบการณ์ในการออกแบบบรรจุภัณฑ์ (Packaging Design) และสื่อ Social Media Marketing ผมมีความมุ่งมั่นอย่างเต็มที่ ที่จะนำความรู้ทั้งด้านธุรกิจและการออกแบบ มาประยุกต์ใช้ในการทำงานจริง เพื่อสร้างสรรค์ผลงานที่สร้าง <span class="text-orange">Impact</span> ให้กับแบรนด์ครับ
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section" id="work">
+        
+        <div class="work-intro" style="margin-top: -6rem; margin-bottom: 2rem;">
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt">WORK</h2>
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+       <div class="project-block">
+            <div class="project-text">
+                <h3 class="work-main-title">RHINO x RMUTK <br>SMART CAFÉ</h3>
+                <p class="work-desc">
+                    ผลงานการออกแบบแบรนดิ้งและภาพลักษณ์แบรนด์ <br>สำหรับโปรเจกต์ร้านกาแฟ Food Truck "Rhino x RMUTK" <br>ผมรับหน้าที่ดูแลงานออกแบบกราฟิกทั้งหมด ตั้งแต่การทำโลโก้ <br>ไปจนถึงสื่อโฆษณาและเมนูซิกเนเจอร์อย่าง 'Rhino Monster' <br>ผสมผสานแนวคิดทางธุรกิจเข้ากับงานดีไซน์ เพื่อสร้างแบรนด์ที่เข้าถึงง่ายและเป็นที่จดจำ
+                </p>
+            </div>
+            <div class="project-gallery">
+                <div class="mini-gallery-grid">
+                    <img src="banners/Artboard 1.png" alt="Work 1">
+                    <img src="banners/Artboard 2.png" alt="Work 2">
+                    <img src="banners/Artboard 3.png" alt="Work 3">
+                </div>
+            </div>
+        </div>
+
+        <div class="stacked-gallery">
+            <img src="banners/ป้าย.png" alt="Stacked Image 1">
+            <img src="banners/menu.png" alt="Stacked Image 2">
+            <img src="banners/moc.png" alt="Stacked Image 3">
+        </div>
+
+        <div class="work-intro" style="margin-top: -5rem; margin-bottom: -2rem;">
+             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt">POSTER</h2>
+             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="work-gallery-wrapper">
+            <div class="work-gallery-horizontal" id="infinite-slider">
+                <div class="gallery-group">
+                    <img src="poster/กดเกด.png" alt="Food Truck Photo">
+                    <img src="poster/hdh.png" alt="Map Illustration">
+                    <img src="poster/workshop.png" alt="Workshop Poster">
+                    <img src="poster/gamezone.png" alt="Gamezone Poster">
+                    <img src="poster/business clinic.png" alt="Business Clinic Poster">
+                    <img src="banners/our first opening.png" alt="our first opening">
+                </div>
+                <div class="gallery-group">
+                    <img src="poster/กดเกด.png" alt="Food Truck Photo">
+                    <img src="poster/hdh.png" alt="Map Illustration">
+                    <img src="poster/workshop.png" alt="Workshop Poster">
+                    <img src="poster/gamezone.png" alt="Gamezone Poster">
+                    <img src="poster/business clinic.png" alt="Business Clinic Poster">
+                    <img src="banners/our first opening.png" alt="our first opening">
+                </div>
+            </div>
+        </div>
+
+        <div class="work-intro" style="margin-top: -5rem; margin-bottom: 4rem;">
+             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt">MENU</h2>
+             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="menu-grid-gallery">
+            <img src="menu/matcha.png" alt="Menu Item 1">
+            <img src="menu/cocoa.png" alt="Menu Item 2">
+            <img src="menu/capu.png" alt="Menu Item 3">
+            
+            <img src="menu/americano origi.png" alt="Menu Item 4">
+            <img src="menu/americano.png" alt="Menu Item 5">
+            <img src="menu/caramel.png" alt="Menu Item 6">
+        </div>
+
+        <div class="work-intro" style="margin-top: 8rem; margin-bottom: 4rem;">
+             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt">EVENT</h2>
+             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="event-gallery-wrapper">
+            <div class="event-columns">
+                
+                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_57.jpg" alt="Event Photo 1"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_58.jpg" alt="Event Photo 2"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_62.jpg" alt="Event Photo 3"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_55.jpg" alt="Event Photo 4"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_118.jpg" alt="Event Photo 5"></div>
+                
+                <div class="event-item"><img src="event/LINE_ALBUM_13169 _1_260121_3.jpg" alt="Event Photo 6"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_13169 _1_260121_15.jpg" alt="Event Photo 7"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_52.jpg" alt="Event Photo 8"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_1.jpg" alt="Event Photo 9"></div>
+
+                <div class="event-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_3.jpg" alt="Event Photo 11"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_5.jpg" alt="Event Photo 12"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_บูธ_260121_27.jpg" alt="Event Photo 13"></div>
+                <div class="event-item"><img src="event/S__15802373.jpg" alt="Event Photo 14"></div>
+                <div class="event-item"><img src="event/S__15802375.jpg" alt="Event Photo 15"></div>
+
+                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_77.jpg" alt="Event Photo 16"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_81.jpg" alt="Event Photo 17"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_84.jpg" alt="Event Photo 18"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_82.jpg" alt="Event Photo 19"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_407.jpg" alt="Event Photo 20"></div>
+                
+                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_242.jpg" alt="Placeholder Vertical"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_231268_260121_2.jpg" alt="Placeholder Horizontal"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_231268_260121_3.jpg" alt="Placeholder Square"></div>
+                <div class="event-item"><img src="event/LINE_ALBUM_231268_260121_4.jpg" alt="Placeholder Vertical"></div>
+            </div> 
+        </div> 
+    </section>
+
+    <section class="cinema-section">
+        <div class="cinema-container">
+            <div class="cinema-header">
+                <h2 class="cinema-title">Cinema<br>Selects.</h2>
+                <span class="cinema-subtitle text-accent">// CURATED WATCHLIST</span>
+            </div>
+            
+            <div class="cinema-grid">
+                
+                <div class="cinema-card">
+                    <div>
+                        <h3 class="film-title">Dune: Part 2</h3>
+                        <div class="cinema-meta">
+                            <span>2024</span>
+                            <span class="cinema-mood-tag">Heavy, Melancholic</span>
+                        </div>
+                    </div>
+                    <p class="film-why">“For the light work and long silences. A visual masterpiece.”</p>
+                </div>
+
+                 <div class="cinema-card">
+                    <div>
+                        <h3 class="film-title">Oppenheimer</h3>
+                        <div class="cinema-meta">
+                            <span>2023</span>
+                            <span class="cinema-mood-tag">Devastating, Trippy</span>
+                        </div>
+                    </div>
+                    <p class="film-why">“Feels like a fever dream. The sound design is incredible.”</p>
+                </div>
+
+                 <div class="cinema-card">
+                    <div>
+                        <h3 class="film-title">Cold Cowboy</h3>
+                        <div class="cinema-meta">
+                            <span>2024</span>
+                            <span class="cinema-mood-tag">Slow, Unbothered</span>
+                        </div>
+                    </div>
+                    <p class="film-why">“A political drama wrapping it up. Great character study.”</p>
+                </div>
+
+                 <div class="cinema-card">
+                    <div>
+                        <h3 class="film-title">Vibes in the Store</h3>
+                        <div class="cinema-meta">
+                            <span>1998</span>
+                            <span class="cinema-mood-tag">Radical, Pure</span>
+                        </div>
+                    </div>
+                    <p class="film-why">“Kids leave a mark inside. Nostalgic and raw.”</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="ticket">
+            <h2 class="font-rock">TUNE INTO THE SIGNAL</h2>
+            <p class="font-prompt" style="margin-bottom: 2rem;">Receiving - Art, Tech, and Design Culture. Subscribe.</p>
+            <button class="subscribe-btn">SUBSCRIBE NOW</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h1 class="footer-title">GRAIN<br>ARCHIVE.</h1>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="#">Work</a>
+                    <a href="#">Archive</a>
+                    <a href="#">About ME</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="#">Twitter / X</a>
+                    <a href="#">Behance</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Email</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom font-prompt">
+            <p>©2026 Pongsathorn. All rights reserved. <br>Designed & Built by Pongsathorn.</p>
+        </div>
+    </footer>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. ระบบเลื่อนภาพ Poster อัตโนมัติ (ของเดิม)
+            const slider = document.getElementById('infinite-slider');
+            if (slider) {
+                setTimeout(() => { slider.scrollLeft = 1; }, 100);
+                slider.addEventListener('scroll', function() {
+                    const halfWidth = slider.scrollWidth / 2;
+                    if (slider.scrollLeft >= halfWidth) { slider.scrollLeft -= halfWidth; }
+                    else if (slider.scrollLeft <= 0) { slider.scrollLeft += halfWidth; }
+                });
+            }
+
+            // 2. ระบบคลิกขยายรูป (Lightbox)
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            const closeBtn = document.querySelector(".close-modal");
+            
+            // เลือกรูปจากทั้งเมนู (3x3) และ Event ให้คลิกได้ทั้งหมด
+            const galleryImages = document.querySelectorAll(".event-item img, .menu-grid-gallery img");
+
+            if (modal && galleryImages.length > 0) {
+                galleryImages.forEach(img => {
+                    img.addEventListener('click', function() {
+                        modal.classList.add("show"); // โชว์กล่อง
+                        modalImg.src = this.src; // เอารูปที่คลิกไปใส่ในกล่อง
+                    });
+                });
+
+                // ปิดเมื่อกดกากบาท
+                closeBtn.addEventListener('click', function() {
+                    modal.classList.remove("show");
+                });
+
+                // ปิดเมื่อคลิกพื้นที่รอบๆ รูป
+                modal.addEventListener('click', function(e) {
+                    if (e.target !== modalImg) {
+                        modal.classList.remove("show");
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
