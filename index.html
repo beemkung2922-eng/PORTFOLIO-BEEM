@@ -1,29 +1,1379 @@
-<style>
-    /* เมื่อหน้าจอเล็กกว่า 1100px (เช่น แท็บเล็ต, มือถือ) */
-    @media (max-width: 1100px) {
-        /* เปลี่ยนให้เรียงบน-ล่าง แทนซ้าย-ขวา */
-        .split-layout-container { 
-            flex-direction: column !important; 
-            align-items: center !important; 
-            gap: 50px !important; /* ลดช่องว่างลงหน่อย */
-        }
-        
-        /* ให้กล่องทั้งสองกว้างเต็มที่ แต่ไม่เกิน 600px (เพื่อไม่ให้ใหญ่เกินไป) */
-        .ig-mask-side, .moc-large-side { 
-            width: 100% !important; 
-            max-width: 600px !important; 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Archive - Navy & Gold Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           1. CSS Reset & Global Styles
+           ========================================= */
+        :root {
+            --accent-color: #F4B41A;
+            --bg-dark: #050814;
+            --bg-darker: #050814;
+            --text-light: #ffffff;
+            --text-gray: #a0aec0;
+
+            /* Fluid spacing scale */
+            --space-xs: clamp(0.5rem, 2vw, 1rem);
+            --space-sm: clamp(1rem, 3vw, 2rem);
+            --space-md: clamp(2rem, 5vw, 4rem);
+            --space-lg: clamp(3rem, 8vw, 8rem);
         }
 
-        /* ปรับความสูงของกล่อง Instagram (ดึง margin-top กลับ) */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        a:hover { color: var(--accent-color); }
+
+        /* Typography Utilities */
+        .font-rock { font-family: 'Rock Salt', cursive; }
+        .font-prompt { font-family: 'Prompt', sans-serif; }
+        .font-syne { font-family: 'Syne', sans-serif; }
+        .text-accent { color: var(--accent-color); }
+        .uppercase { text-transform: uppercase; }
+
+        /* =========================================
+           2. Hero Section & Nav
+           ========================================= */
+        .hero {
+            position: relative;
+            height: 100svh; /* svh = safe viewport height (iOS friendly) */
+            min-height: 500px;
+            background-image: url('ytkty.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, var(--bg-dark) 0%, transparent 50%);
+        }
+
+        /* Nav Tags — เลื่อนได้บนมือถือ */
+        .nav-tags {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+            white-space: nowrap;
+            /* Scroll หากล้น */
+            max-width: calc(100vw - 2rem);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 4px 2px;
+        }
+        .nav-tags::-webkit-scrollbar { display: none; }
+
+        .tag {
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+            font-weight: bold;
+            color: #ffffff;
+            white-space: nowrap;
+            flex-shrink: 0;
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .tag:hover { background-color: var(--accent-color); color: var(--bg-dark); border-color: var(--accent-color); }
+        .tag-home { background-color: var(--accent-color); color: var(--bg-dark); border-color: var(--accent-color); }
+
+        .hero-title-wrapper { z-index: 2; }
+
+        .hero-title {
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-size: clamp(4rem, 21vw, 22vw);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            color: var(--accent-color);
+            text-align: center;
+            white-space: nowrap;
+            margin-bottom: -5vh;
+            width: 100%;
+        }
+
+        /* =========================================
+           3. About Section
+           ========================================= */
+        .about-section {
+            background-color: var(--text-light);
+            color: var(--bg-darker);
+            padding: var(--space-lg) var(--space-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 40px;
+            width: 2px;
+            height: 100%;
+            background-color: var(--accent-color);
+            opacity: 0.5;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-left: clamp(0px, 5vw, 60px);
+        }
+
+        .about-title {
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            color: var(--bg-darker);
+            transform: rotate(-2deg);
+            margin-bottom: 2rem;
+        }
+
+        .about-text {
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            color: #333;
+            max-width: 800px;
+        }
+
+        .text-orange { color: var(--accent-color); font-weight: 600; }
+        .dot-accent { color: var(--accent-color); }
+
+        /* =========================================
+           4. Work Section
+           ========================================= */
+        .work-section {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: var(--space-lg) 0;
+        }
+
+        .work-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            padding: 0 var(--space-sm);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cross-decor {
+            color: var(--accent-color);
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            letter-spacing: 5px;
+            margin: 1.5rem 0;
+        }
+
+        .title-rock-salt {
+            font-family: 'Rock Salt', cursive;
+            font-size: clamp(2rem, 7vw, 4rem);
+            color: #ffffff;
+            transform: rotate(-3deg);
+            display: inline-block;
+            margin: 0;
+        }
+
+        /* Project Block (Text + Gallery side by side) */
+        .project-block {
+            display: flex;
+            align-items: center;
+            gap: clamp(1.5rem, 4vw, 4rem);
+            max-width: 1300px;
+            margin: 0 auto 3rem auto;
+            padding: 0 var(--space-sm);
+        }
+        .project-block.reverse { flex-direction: row-reverse; }
+
+        .project-text { flex: 1; min-width: 0; }
+        .project-gallery { flex: 1.5; min-width: 0; }
+
+        .work-main-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .work-desc {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            line-height: 1.7;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        .mini-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .mini-gallery-grid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;    /* ทุกช่องสูงเท่ากัน เป็นสี่เหลี่ยมจัตุรัส */
+            object-fit: contain;    /* แสดงรูปเต็มไม่ครอป */
+            background-color: rgba(255,255,255,0.03); /* พื้นหลังจางๆ กันช่องว่างโล่ง */
+            border-radius: 4px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: grayscale(30%);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .mini-gallery-grid img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+            z-index: 2;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: var(--accent-color);
+        }
+
+        /* =========================================
+           5. Stacked Gallery
+           ========================================= */
+        .stacked-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+        }
+
+        .stacked-gallery img {
+            width: 100%;
+            max-height: 900px;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .stacked-gallery img:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            cursor: pointer;
+        }
+
+        /* =========================================
+           5.5 Split Layout (Instagram + Mockup)
+           ========================================= */
+        .split-layout-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: clamp(1.5rem, 4vw, 50px);
+            max-width: 1500px;
+            margin: 0 auto 6rem auto;
+            padding: 0 var(--space-sm);
+        }
+
+        .ig-mask-side {
+            flex: 0.9;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
         .ig-mask-wrapper {
-            height: 600px !important; /* หรือปรับให้พอดีกับ Widget */
+            position: relative;
+            width: 100%;
+            flex-grow: 1;
+            min-height: 580px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* ปรับกล่อง Mockup (เอา margin-top ที่ดันตอนจอใหญ่ออก) */
-        .moc-wrapper { 
-            margin-top: 0 !important; 
-            height: auto !important; 
-            min-height: unset !important;
+        .ig-mask-wrapper a[href*="elfsight.com"],
+        .ig-mask-wrapper [class*="Badge__root"],
+        .ig-mask-wrapper [class*="Logo__root"],
+        .ig-mask-wrapper [class*="WidgetTitle__container"] {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            pointer-events: none !important;
         }
-    }
-</style>
+        .elfsight-app-e6206e2b-6319-4384-9e8d-41023fad72eb {
+            margin-bottom: -50px !important;
+        }
+
+        .moc-large-side {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .moc-wrapper {
+            margin-top: 88px;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            transition: transform 0.4s ease;
+        }
+
+        .moc-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* =========================================
+           5.6 Dual Gallery
+           ========================================= */
+        .dual-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 6rem auto;
+            padding: 0 var(--space-sm);
+        }
+
+        .dual-gallery img {
+            width: calc(50% - 15px);
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .dual-gallery img:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            cursor: pointer;
+        }
+
+        /* =========================================
+           6. Menu Grid Gallery
+           ========================================= */
+        .menu-grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 คอลัมน์เสมอ */
+            gap: clamp(10px, 2vw, 30px);
+            max-width: 1200px;
+            margin: 0 auto 6rem auto;
+            padding: 0 var(--space-sm);
+        }
+
+        .menu-grid-gallery img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            background-color: var(--text-light);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .menu-grid-gallery img:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            cursor: pointer;
+        }
+
+        /* =========================================
+           7. Interactive 3D Gallery (Globe / Stack)
+           ========================================= */
+        .interactive-gallery-section {
+            position: relative;
+            width: 100%;
+            background-color: var(--bg-darker);
+            padding-bottom: 4rem;
+            margin-bottom: 6rem;
+            border-radius: 20px;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, rgba(244, 180, 26, 0.15) 0%, transparent 60%);
+        }
+
+        .view-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 24px 0 70px 0;
+            z-index: 10;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .view-btn {
+            background-color: transparent;
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .view-btn.active, .view-btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--bg-darker);
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(244, 180, 26, 0.6);
+        }
+
+        .gallery-scene {
+            width: 100%;
+            height: clamp(400px, 60vw, 600px);
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+            touch-action: none;
+        }
+        .gallery-scene:active { cursor: grabbing; }
+
+        .gallery-container {
+            position: relative;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-item {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .gallery-item img {
+            position: absolute;
+            top: 50%; left: 50%;
+            max-width: clamp(100px, 15vw, 170px);
+            max-height: clamp(70px, 10vw, 120px);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+            background-color: var(--bg-darker);
+            border: 2px solid rgba(255,255,255,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            backface-visibility: visible;
+            -webkit-user-drag: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @media (hover: hover) {
+            .gallery-item:hover { z-index: 200 !important; cursor: pointer; }
+            .gallery-item:hover img {
+                transform: translate(-50%, calc(-50% - 25px)) scale(1.4) translateZ(50px);
+                border: 2px solid var(--accent-color);
+                box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 25px rgba(244, 180, 26, 0.6);
+            }
+        }
+
+        /* =========================================
+           8. Lightbox Modal
+           ========================================= */
+        .modal {
+            position: fixed;
+            z-index: 9999;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(5, 8, 20, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1rem;
+        }
+        .modal.show { opacity: 1; pointer-events: auto; }
+
+        .modal-content {
+            max-width: 90vw;
+            max-height: 88vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.1);
+            object-fit: contain;
+        }
+        .modal.show .modal-content { transform: scale(1); }
+
+        .close-modal {
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            color: #ffffff;
+            font-size: clamp(28px, 6vw, 40px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+            z-index: 10001;
+        }
+        .close-modal:hover { color: var(--accent-color); }
+
+        /* =========================================
+           9. Poster Infinite Scroll
+           ========================================= */
+        .work-gallery-wrapper {
+            width: 100vw;
+            max-width: 100%;
+            background-color: var(--bg-dark);
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 40px 0;
+            margin-bottom: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+        }
+
+        .work-gallery-horizontal {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .work-gallery-horizontal::-webkit-scrollbar { display: none; }
+
+        .gallery-group {
+            display: flex;
+            gap: 12px;
+            padding-right: 12px;
+            flex-shrink: 0;
+            align-items: center;
+        }
+
+        .gallery-group img {
+            height: clamp(250px, 40vw, 500px);
+            width: auto;
+            max-width: none;
+            flex-shrink: 0;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* =========================================
+           10. Cinema Selects
+           ========================================= */
+        .cinema-section {
+            background-color: var(--text-light);
+            color: var(--bg-darker);
+            padding: var(--space-lg) var(--space-sm);
+            position: relative;
+        }
+
+        .cinema-container { max-width: 1200px; margin: 0 auto; }
+
+        .cinema-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--bg-dark);
+            padding-bottom: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cinema-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 900;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .cinema-subtitle {
+            font-family: 'Prompt', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            font-size: clamp(0.8rem, 2vw, 1rem);
+        }
+
+        .cinema-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: clamp(15px, 3vw, 30px);
+        }
+
+        .cinema-card {
+            background-color: #f4f4f4;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 12px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .cinema-card:hover {
+            background-color: var(--bg-darker);
+            color: var(--text-light);
+            transform: translateY(-10px);
+            border-color: var(--bg-darker);
+        }
+        .cinema-card:hover .cinema-meta { color: var(--text-gray); }
+        .cinema-card:hover .cinema-mood-tag { background-color: var(--accent-color); color: var(--bg-darker); }
+
+        .film-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.3rem, 3.5vw, 2rem);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .cinema-meta {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: #666;
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .cinema-mood-tag {
+            background-color: #ddd;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .film-why {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px dashed #ccc;
+        }
+        .cinema-card:hover .film-why { border-color: #555; }
+
+        /* =========================================
+           11. CTA & Footer
+           ========================================= */
+        .cta-section {
+            background-color: var(--bg-dark);
+            padding: var(--space-lg) var(--space-sm);
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .cta-section::before, .cta-section::after {
+            content: '++++++++++++++++++++++++++++++++++++++';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: rgba(255,255,255,0.05);
+            letter-spacing: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .cta-section::before { top: 1.5rem; }
+        .cta-section::after { bottom: 1.5rem; }
+
+        .ticket {
+            background-color: var(--accent-color);
+            color: var(--bg-darker);
+            padding: clamp(2rem, 6vw, 4rem);
+            text-align: center;
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+            border-radius: 16px;
+        }
+
+        /* clip-path only on larger screens */
+        @media (min-width: 600px) {
+            .ticket {
+                clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+                border-radius: 0;
+            }
+        }
+
+        .ticket h2 {
+            font-family: 'Rock Salt', cursive;
+            font-weight: 800;
+            font-size: clamp(1.4rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .ticket p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            margin-bottom: 2rem;
+        }
+
+        .subscribe-btn {
+            background-color: var(--bg-darker);
+            color: var(--text-light);
+            padding: 12px 36px;
+            border: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+        }
+        .subscribe-btn:hover { transform: scale(1.05); }
+
+        /* Footer */
+        .footer {
+            background-color: #03050a;
+            padding: var(--space-lg) var(--space-sm) 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+
+        .footer-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 900;
+            line-height: 0.9;
+            color: var(--text-light);
+        }
+
+        .footer-links { display: flex; gap: 3rem; flex-wrap: wrap; }
+
+        .footer-col h4 {
+            font-family: 'Syne', sans-serif;
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-gray);
+            margin-bottom: 0.7rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: clamp(0.75rem, 2vw, 0.8rem);
+            color: var(--text-gray);
+        }
+
+        /* =========================================
+           12. Responsive Breakpoints
+           ========================================= */
+
+        /* --- Tablet (≤1100px) --- */
+        @media (max-width: 1100px) {
+            .split-layout-container {
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+            .ig-mask-side, .moc-large-side {
+                width: 100% !important;
+                max-width: 600px;
+                min-width: unset !important;
+            }
+            .moc-wrapper { margin-top: 0 !important; }
+        }
+
+        /* --- Tablet (≤1024px) --- */
+        @media (max-width: 1024px) {
+            .project-block,
+            .project-block.reverse { flex-direction: column; gap: 2rem; }
+            .project-text, .project-gallery { flex: auto; width: 100%; }
+        }
+
+        /* --- Mobile (≤768px) --- */
+        @media (max-width: 768px) {
+            /* About */
+            .about-section::before { display: none; }
+            .about-container { padding-left: 0; }
+            .about-title { transform: none; text-align: center; }
+            .about-text { text-align: center; }
+
+            /* Mini gallery: คง 3 คอลัมน์เสมอ */
+
+            /* Menu grid: คงไว้ 3 คอลัมน์เสมอ ไม่ลดบนมือถือ */
+
+            /* Dual gallery: stack vertically */
+            .dual-gallery { flex-direction: column; gap: 30px; }
+            .dual-gallery img { width: 100%; }
+
+            /* Cinema grid: single column */
+            .cinema-grid { grid-template-columns: 1fr; }
+            .cinema-header { flex-direction: column; align-items: flex-start; }
+
+            /* Footer */
+            .footer-content { flex-direction: column; }
+            .footer-links { flex-wrap: wrap; gap: 2rem; }
+        }
+
+        /* --- Small Mobile (≤480px) --- */
+        @media (max-width: 480px) {
+            .hero-title { letter-spacing: -1px; }
+            /* mini-gallery-grid: คง 3 คอลัมน์ ไม่ลดที่นี่ */
+            .title-rock-salt { font-size: 1.8rem; }
+            .work-intro { margin-bottom: 2.5rem; }
+
+            .gallery-scene { height: 350px; }
+            .gallery-item img {
+                max-width: 80px;
+                max-height: 56px;
+            }
+
+            .cinema-card { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="nav-tags">
+            <span class="tag tag-home">Home</span>
+            <span class="tag tag-archive">Archive</span>
+            <span class="tag tag-about">About</span>
+        </div>
+        <div class="hero-title-wrapper">
+            <h1 class="hero-title">Portfolio</h1>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="about-container">
+            <h2 class="about-title font-rock">About ME<span class="dot-accent">.</span></h2>
+            <div class="about-text font-prompt">
+                <p>
+                    สวัสดีครับผม <span class="text-orange">นายพงศธร เพ็งขันธ์ (บีม)</span> นักศึกษาคณะบริหารธุรกิจ สาขา Digital Startup <br>จากมหาวิทยาลัยเทคโนโลยีราชมงคลกรุงเทพ
+                </p>
+                <br>
+                <p>
+                    จุดเริ่มต้นในการทำงานกราฟิกของผม มาจากการที่ต้องทำโปรเจกต์ธุรกิจในมหาลัย แล้วผมมักจะอาสารับหน้าที่ดูแลเรื่องภาพลักษณ์แบรนด์และการออกแบบ จนรู้ตัวว่าอยากเอาดีด้านนี้เป็นอาชีพครับ ผมเชื่อว่าการที่ผมมีพื้นฐานด้านการตลาดและ Startup จะช่วยให้ผมมองงานกราฟิกในมุมมองที่กว้างขึ้น และตอนนี้ผมพร้อมมากๆ ที่จะเรียนรู้และเติบโตในสายงาน <span class="text-orange">Graphic Design</span> ครับ
+                </p>
+                <br>
+                <p>
+                    แม้เส้นทางการศึกษาของผมจะเริ่มต้นที่สายธุรกิจ แต่นั่นกลับเป็นจุดแข็งที่ทำให้ผม <span class="text-orange">"เข้าใจการออกแบบเพื่อตอบโจทย์ธุรกิจ"</span> ผมเชื่อว่ากราฟิกที่ดีไม่ใช่แค่สวยงาม แต่ต้องสื่อสารและสร้าง Brand Identity ที่แข็งแกร่งได้
+                </p>
+                <br>
+                <p>
+                    ผมมีความรู้ด้านการจัดวางองค์ประกอบศิลป์ ถนัดการใช้โปรแกรมอย่าง <span class="text-orange">Photoshop และ Illustrator</span> รวมถึงมีประสบการณ์ในการออกแบบบรรจุภัณฑ์ (Packaging Design) และสื่อ Social Media Marketing ผมมีความมุ่งมั่นอย่างเต็มที่ ที่จะนำความรู้ทั้งด้านธุรกิจและการออกแบบ มาประยุกต์ใช้ในการทำงานจริง เพื่อสร้างสรรค์ผลงานที่สร้าง <span class="text-orange">Impact</span> ให้กับแบรนด์ครับ
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section" id="work">
+
+        <div class="work-intro" style="margin-top: -6rem; margin-bottom: 2rem;">
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt">WORK</h2>
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="project-block">
+            <div class="project-text">
+                <h3 class="work-main-title">RHINO x RMUTK <br>SMART CAFÉ</h3>
+                <p class="work-desc">
+                    ผลงานการออกแบบแบรนดิ้งและภาพลักษณ์แบรนด์ สำหรับโปรเจกต์ร้านกาแฟ Food Truck "Rhino x RMUTK" ผมรับหน้าที่ดูแลงานออกแบบกราฟิกทั้งหมด ตั้งแต่การทำโลโก้ ไปจนถึงสื่อโฆษณาและเมนูซิกเนเจอร์อย่าง 'Rhino Monster' ผสมผสานแนวคิดทางธุรกิจเข้ากับงานดีไซน์ เพื่อสร้างแบรนด์ที่เข้าถึงง่ายและเป็นที่จดจำ
+                </p>
+            </div>
+            <div class="project-gallery">
+                <div class="mini-gallery-grid">
+                    <img src="banners/Artboard 1.png" alt="Work 1">
+                    <img src="banners/Artboard 2.png" alt="Work 2">
+                    <img src="banners/Artboard 3.png" alt="Work 3">
+                </div>
+            </div>
+        </div>
+
+        <div class="stacked-gallery">
+            <img src="banners/ป้าย.png" alt="Stacked Image 1">
+            <img src="banners/menu.png" alt="Stacked Image 2">
+        </div>
+
+        <!-- Split: Instagram Widget + Mockup -->
+        <div class="split-layout-container" style="margin-top: 4rem;">
+
+            <div class="ig-mask-side">
+                <div class="work-intro" style="margin-bottom: 1.5rem; text-align: center;">
+                    <h2 class="title-rock-salt" style="font-size: clamp(1.5rem, 4vw, 2.2rem); color: #ffffff;">INSTAGRAM</h2>
+                </div>
+                <div class="ig-mask-wrapper">
+                    <script src="https://elfsightcdn.com/platform.js" async></script>
+                    <div class="elfsight-app-e6206e2b-6319-4384-9e8d-41023fad72eb" data-elfsight-app-lazy></div>
+                </div>
+            </div>
+
+            <div class="moc-large-side">
+                <div class="moc-wrapper">
+                    <img src="banners/moc.png" alt="Rhino Mockup">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- POSTER -->
+        <div class="work-intro" style="margin-top: 2rem; margin-bottom: -2rem;">
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt">POSTER</h2>
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="work-gallery-wrapper">
+            <div class="work-gallery-horizontal" id="infinite-slider">
+                <div class="gallery-group">
+                    <img src="poster/กดเกด.png" alt="Food Truck Photo">
+                    <img src="poster/hdh.png" alt="Map Illustration">
+                    <img src="poster/workshop.png" alt="Workshop Poster">
+                    <img src="poster/gamezone.png" alt="Gamezone Poster">
+                    <img src="poster/business clinic.png" alt="Business Clinic Poster">
+                    <img src="banners/our first opening.png" alt="Our First Opening">
+                </div>
+                <div class="gallery-group">
+                    <img src="poster/กดเกด.png" alt="Food Truck Photo">
+                    <img src="poster/hdh.png" alt="Map Illustration">
+                    <img src="poster/workshop.png" alt="Workshop Poster">
+                    <img src="poster/gamezone.png" alt="Gamezone Poster">
+                    <img src="poster/business clinic.png" alt="Business Clinic Poster">
+                    <img src="banners/our first opening.png" alt="Our First Opening">
+                </div>
+            </div>
+        </div>
+
+        <!-- MENU -->
+        <div class="work-intro" style="margin-top: -3rem; margin-bottom: 3rem;">
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt">MENU</h2>
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="menu-grid-gallery">
+            <img src="menu/matcha.png" alt="Menu Item 1">
+            <img src="menu/cocoa.png" alt="Menu Item 2">
+            <img src="menu/capu.png" alt="Menu Item 3">
+            <img src="menu/americano origi.png" alt="Menu Item 4">
+            <img src="menu/americano.png" alt="Menu Item 5">
+            <img src="menu/caramel.png" alt="Menu Item 6">
+        </div>
+
+        <!-- EVENT -->
+        <div class="work-intro" style="margin-top: 4rem; margin-bottom: 2rem;">
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt">EVENT</h2>
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="interactive-gallery-section">
+            <div class="view-controls">
+                <button class="view-btn active" data-view="sphere">3D Gallery</button>
+                <button class="view-btn" data-view="stack">Stack</button>
+            </div>
+
+            <div class="gallery-scene" id="galleryScene">
+                <div class="gallery-container" id="galleryContainer">
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_57.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_58.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_62.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_55.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_118.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169 _1_260121_3.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169 _1_260121_15.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_52.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_1.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_3.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_5.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_บูธ_260121_27.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/S__15802373.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/S__15802375.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_77.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_81.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_84.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_82.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_407.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_242.jpg" alt="Event"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Cinema Selects -->
+    <section class="cinema-section">
+        <div class="cinema-container">
+            <div class="cinema-header">
+                <h2 class="cinema-title">Cinema<br>Selects.</h2>
+                <span class="cinema-subtitle text-accent">// CURATED WATCHLIST</span>
+            </div>
+            <div class="cinema-grid">
+                <div class="cinema-card">
+                    <div>
+                        <h3 class="film-title">Dune: Part 2</h3>
+                        <div class="cinema-meta">
+                            <span>2024</span>
+                            <span class="cinema-mood-tag">Heavy, Melancholic</span>
+                        </div>
+                    </div>
+                    <p class="film-why">"For the light work and long silences. A visual masterpiece."</p>
+                </div>
+                <div class="cinema-card">
+                    <div>
+                        <h3 class="film-title">Oppenheimer</h3>
+                        <div class="cinema-meta">
+                            <span>2023</span>
+                            <span class="cinema-mood-tag">Devastating, Trippy</span>
+                        </div>
+                    </div>
+                    <p class="film-why">"Feels like a fever dream. The sound design is incredible."</p>
+                </div>
+                <div class="cinema-card">
+                    <div>
+                        <h3 class="film-title">Cold Cowboy</h3>
+                        <div class="cinema-meta">
+                            <span>2024</span>
+                            <span class="cinema-mood-tag">Slow, Unbothered</span>
+                        </div>
+                    </div>
+                    <p class="film-why">"A political drama wrapping it up. Great character study."</p>
+                </div>
+                <div class="cinema-card">
+                    <div>
+                        <h3 class="film-title">Vibes in the Store</h3>
+                        <div class="cinema-meta">
+                            <span>1998</span>
+                            <span class="cinema-mood-tag">Radical, Pure</span>
+                        </div>
+                    </div>
+                    <p class="film-why">"Kids leave a mark inside. Nostalgic and raw."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="ticket">
+            <h2 class="font-rock">TUNE INTO THE SIGNAL</h2>
+            <p class="font-prompt">Receiving - Art, Tech, and Design Culture. Subscribe.</p>
+            <button class="subscribe-btn">SUBSCRIBE NOW</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h1 class="footer-title">GRAIN<br>ARCHIVE.</h1>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="#">Work</a>
+                    <a href="#">Archive</a>
+                    <a href="#">About ME</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="#">Twitter / X</a>
+                    <a href="#">Behance</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Email</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom font-prompt">
+            <p>©2026 Pongsathorn. All rights reserved.<br>Designed & Built by Pongsathorn.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg" alt="Enlarged view">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // ==========================================
+            // 1. Lightbox
+            // ==========================================
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            const closeBtn = document.querySelector(".close-modal");
+            const galleryImages = document.querySelectorAll(".menu-grid-gallery img, .gallery-item img");
+
+            if (modal && galleryImages.length > 0) {
+                galleryImages.forEach(img => {
+                    img.addEventListener('click', function (e) {
+                        if (window.hasDragged) return;
+                        e.stopPropagation();
+                        modal.classList.add("show");
+                        modalImg.src = this.src;
+                    });
+                });
+                closeBtn.addEventListener('click', () => modal.classList.remove("show"));
+                modal.addEventListener('click', (e) => {
+                    if (e.target !== modalImg) modal.classList.remove("show");
+                });
+                // Close with Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') modal.classList.remove("show");
+                });
+            }
+
+            // ==========================================
+            // 2. 3D Interactive Gallery (Globe / Stack)
+            // ==========================================
+            const galleryScene = document.getElementById('galleryScene');
+            const galleryContainer = document.getElementById('galleryContainer');
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.view-btn');
+
+            let currentMode = 'sphere';
+            let rotateX = 0;
+            let rotateY = 0;
+
+            function getRadius() {
+                const w = window.innerWidth;
+                if (w < 480) return 160;
+                if (w < 768) return 200;
+                return 320;
+            }
+
+            function updateLayout(mode) {
+                currentMode = mode;
+                const total = items.length;
+
+                if (mode === 'stack') {
+                    rotateX = 0;
+                    rotateY = 0;
+                    galleryContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                }
+
+                items.forEach((item, index) => {
+                    let transformStr = '';
+
+                    if (mode === 'sphere') {
+                        const radius = getRadius();
+                        const y = 1 - (index / (total - 1)) * 2;
+                        const radiusAtY = Math.sqrt(1 - y * y);
+                        const theta = 2.39996323 * index;
+                        const x = Math.cos(theta) * radiusAtY;
+                        const z = Math.sin(theta) * radiusAtY;
+                        const rotY = Math.atan2(x, z) * (180 / Math.PI);
+                        const rotXVal = Math.asin(-y) * (180 / Math.PI);
+                        transformStr = `translate(-50%, -50%) rotateY(${rotY}deg) rotateX(${rotXVal}deg) translateZ(${radius}px)`;
+                        item.style.zIndex = 1;
+
+                    } else if (mode === 'stack') {
+                        const gapX = window.innerWidth < 768 ? 30 : 45;
+                        const centerIndex = Math.floor(total / 2);
+                        const distanceFromCenter = index - centerIndex;
+                        const offsetX = distanceFromCenter * gapX;
+                        const depth = 120;
+                        const offsetZ = -Math.abs(distanceFromCenter) * depth;
+                        let rotateYVal = 0;
+                        if (distanceFromCenter < 0) rotateYVal = 50;
+                        if (distanceFromCenter > 0) rotateYVal = -50;
+                        const zIndex = 100 - Math.abs(distanceFromCenter);
+                        item.style.zIndex = zIndex;
+                        transformStr = `translate(-50%, -50%) translate3d(${offsetX}px, 0px, ${offsetZ}px) rotateY(${rotateYVal}deg)`;
+                    }
+
+                    item.style.transform = transformStr;
+                });
+            }
+
+            updateLayout('sphere');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    updateLayout(e.target.dataset.view);
+                });
+            });
+
+            // Drag & Rotate
+            window.isDraggingGallery = false;
+            window.hasDragged = false;
+            let startX, startY;
+
+            function dragStart(e) {
+                window.isDraggingGallery = true;
+                window.hasDragged = false;
+                startX = e.touches ? e.touches[0].clientX : e.clientX;
+                startY = e.touches ? e.touches[0].clientY : e.clientY;
+                galleryContainer.style.transition = 'none';
+            }
+
+            function dragMove(e) {
+                if (!window.isDraggingGallery) return;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                const deltaX = clientX - startX;
+                const deltaY = clientY - startY;
+
+                if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+                    window.hasDragged = true;
+                }
+
+                const speed = currentMode === 'stack' ? 0.2 : 0.4;
+                rotateY += deltaX * speed;
+                rotateX -= deltaY * speed;
+
+                if (currentMode === 'sphere') {
+                    rotateX = Math.max(-60, Math.min(60, rotateX));
+                } else if (currentMode === 'stack') {
+                    rotateX = Math.max(-10, Math.min(10, rotateX));
+                    rotateY = Math.max(-45, Math.min(45, rotateY));
+                }
+
+                galleryContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                startX = clientX;
+                startY = clientY;
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function dragEnd() {
+                if (!window.isDraggingGallery) return;
+                window.isDraggingGallery = false;
+                galleryContainer.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }
+
+            galleryScene.addEventListener('mousedown', dragStart);
+            document.addEventListener('mousemove', dragMove);
+            document.addEventListener('mouseup', dragEnd);
+            galleryScene.addEventListener('touchstart', dragStart, { passive: false });
+            document.addEventListener('touchmove', dragMove, { passive: false });
+            document.addEventListener('touchend', dragEnd);
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => updateLayout(currentMode), 150);
+            });
+
+            // ==========================================
+            // 3. Infinite Poster Slider (Auto-scroll)
+            // ==========================================
+            const slider = document.getElementById('infinite-slider');
+            if (slider) {
+                let scrollSpeed = 0.8; // px per frame
+                let isUserScrolling = false;
+                let userScrollTimer;
+
+                // Auto-scroll animation
+                function autoScroll() {
+                    if (!isUserScrolling) {
+                        slider.scrollLeft += scrollSpeed;
+                        const halfWidth = slider.scrollWidth / 2;
+                        if (slider.scrollLeft >= halfWidth) {
+                            slider.scrollLeft -= halfWidth;
+                        }
+                    }
+                    requestAnimationFrame(autoScroll);
+                }
+
+                // Pause auto-scroll when user manually scrolls
+                slider.addEventListener('scroll', function () {
+                    const halfWidth = slider.scrollWidth / 2;
+                    if (slider.scrollLeft >= halfWidth) slider.scrollLeft -= halfWidth;
+                    else if (slider.scrollLeft <= 0) slider.scrollLeft += halfWidth;
+                });
+
+                slider.addEventListener('touchstart', () => {
+                    isUserScrolling = true;
+                    clearTimeout(userScrollTimer);
+                }, { passive: true });
+
+                slider.addEventListener('touchend', () => {
+                    userScrollTimer = setTimeout(() => { isUserScrolling = false; }, 2000);
+                });
+
+                setTimeout(() => {
+                    slider.scrollLeft = 1;
+                    requestAnimationFrame(autoScroll);
+                }, 200);
+            }
+
+        });
+    </script>
+
+</body>
+</html>
