@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Archive - Redesigned</title>
+    <title>Portfolio Archive - Navy & Gold Edition</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
@@ -11,14 +11,14 @@
     
     <style>
         /* =========================================
-           1. CSS Reset & Global Styles
+           1. CSS Reset & Global Styles (ธีมสีน้ำเงินเข้ม-ทอง)
            ========================================= */
         :root {
-            --accent-color: #ff7a00;
-            --bg-dark: #121212;
-            --bg-darker: #0a0a0a;
+            --accent-color: #F4B41A; /* สีทอง */
+            --bg-dark: #050814;      /* สีน้ำเงินเข้ม */
+            --bg-darker: #050814;    /* สีน้ำเงินเข้มจัดมาก */
             --text-light: #ffffff;
-            --text-gray: #aaaaaa;
+            --text-gray: #a0aec0;
         }
         * {
             margin: 0;
@@ -89,14 +89,16 @@
             border-radius: 8px;
             font-size: 0.9rem;
             font-weight: bold;
-            color: #000;
+            color: #ffffff;
             font-family: inherit; 
             text-transform: none; 
             letter-spacing: normal;
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
         }
-        .tag-home { background-color: #ff7a00; }
-        .tag-archive { background-color: #4CAF50; color: #fff; } 
-        .tag-about { background-color: #a0c4ff; }
+        .tag:hover { background-color: var(--accent-color); color: var(--bg-dark); border-color: var(--accent-color); }
+        .tag-home { background-color: var(--accent-color); color: var(--bg-dark); border-color: var(--accent-color); }
         
         .hero-title-wrapper {
             z-index: 2;
@@ -107,7 +109,7 @@
             font-weight: 900;
             line-height: 1;
             letter-spacing: -3px;
-            color: #ff7a00;
+            color: var(--accent-color);
             text-align: center;
             white-space: nowrap;
             margin-bottom: -5vh;
@@ -116,11 +118,11 @@
         }
 
         /* =========================================
-           3. About Section (Redesigned)
+           3. About Section 
            ========================================= */
         .about-section {
             background-color: var(--text-light);
-            color: var(--bg-dark);
+            color: var(--bg-darker);
             padding: 6rem 2rem;
             position: relative;
             overflow: hidden;
@@ -132,589 +134,261 @@
             width: 2px;
             height: 100%;
             background-color: var(--accent-color);
-            opacity: 0.3;
+            opacity: 0.5;
         }
-        .about-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding-left: 60px; 
-        }
-        .about-title {
-            font-size: 3rem; 
-            color: var(--bg-dark);
-            transform: rotate(-2deg); 
-            margin-bottom: 3rem;
-            text-align: left; 
-        }
-        .about-text {
-            font-size: 1.15rem;
-            color: #333;
-            max-width: 800px;
-            text-align: left; 
-        }
-        .about-highlight {
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-        .dot-accent {
-            color: var(--accent-color); 
-        }
-        .text-orange {
-            color: var(--accent-color);
-            font-weight: 600;
-        }
+        .about-container { max-width: 1000px; margin: 0 auto; padding-left: 60px; }
+        .about-title { font-size: 3rem; color: var(--bg-darker); transform: rotate(-2deg); margin-bottom: 3rem; }
+        .about-text { font-size: 1.15rem; color: #333; max-width: 800px; }
+        .text-orange { color: var(--accent-color); font-weight: 600; }
+        .dot-accent { color: var(--accent-color); }
 
         /* =========================================
            4. Work Section
            ========================================= */
-        .work-section {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            padding: 8rem 0;
-            margin: 0;
-        }
-        
-        .work-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 6rem auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-        .cross-decor {
-            color: #ff7a00; 
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            margin: 1.5rem 0;
-        }
-        .title-rock-salt {
-            font-family: 'Rock Salt', cursive;
-            text-transform: none;
-            font-size: 4rem;
-            color: #ffffff;
-            transform: rotate(-3deg);
-            display: inline-block;
-            margin: 0;
-        }
+        .work-section { background-color: var(--bg-dark); color: var(--text-light); padding: 8rem 0; margin: 0; }
+        .work-intro { text-align: center; max-width: 800px; margin: 0 auto 6rem auto; padding: 0 2rem; position: relative; z-index: 2; }
+        .cross-decor { color: var(--accent-color); font-size: 1.2rem; letter-spacing: 5px; margin: 1.5rem 0; }
+        .title-rock-salt { font-family: 'Rock Salt', cursive; font-size: 4rem; color: #ffffff; transform: rotate(-3deg); display: inline-block; margin: 0; }
 
-        .project-block {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            max-width: 1300px;
-            margin: 0 auto 3rem auto; 
-            padding: 0 2rem;
-        }
-        .project-block.reverse {
-            flex-direction: row-reverse;
-        }
+        .project-block { display: flex; align-items: center; gap: 4rem; max-width: 1300px; margin: 0 auto 3rem auto; padding: 0 2rem; }
+        .project-block.reverse { flex-direction: row-reverse; }
+        .project-text { flex: 1; min-width: 300px; }
+        .project-gallery { flex: 1.5; }
 
-        .project-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        .project-gallery {
-            flex: 1.5;
-        }
+        .work-main-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; text-transform: uppercase; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-light); }
+        .work-desc { font-family: 'Prompt', sans-serif; font-size: 0.95rem; line-height: 1.6; color: var(--text-gray); font-weight: 300; }
 
-        .work-subtitle {
-            font-size: 0.8rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-        .work-main-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-        }
-        .work-desc {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: var(--text-gray);
-            font-weight: 300;
-        }
-
-        .mini-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-        .mini-gallery-grid img {
-            width: 100%;
-            height: 300px; 
-            object-fit: cover;
-            border-radius: 4px;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            filter: grayscale(30%); 
-        }
-        .mini-gallery-grid:hover img {
-            filter: grayscale(0%); 
-        }
-        .mini-gallery-grid img:hover {
-            transform: scale(1.05);
-            z-index: 2;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
+        .mini-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .mini-gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; transition: transform 0.3s ease, filter 0.3s ease; filter: grayscale(30%); border: 1px solid rgba(255,255,255,0.05); }
+        .mini-gallery-grid img:hover { filter: grayscale(0%); transform: scale(1.05); z-index: 2; box-shadow: 0 10px 20px rgba(0,0,0,0.5); border-color: var(--accent-color); }
         
         /* =========================================
-           5. Stacked Gallery (รูปเรียงลงมา + เอฟเฟกต์เด้ง)
+           5. Stacked Gallery
            ========================================= */
-        .stacked-gallery {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto 8rem auto;
-            padding: 0 2rem;
+        .stacked-gallery { display: flex; flex-direction: column; align-items: center; gap: 40px; max-width: 1200px; margin: 0 auto -2rem auto; padding: 0 2rem; }
+        .stacked-gallery img { width: 100%; max-height: 900px; object-fit: contain; border-radius: 8px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; }
+        .stacked-gallery img:hover { transform: translateY(-20px); box-shadow: 0 20px 40px rgba(0,0,0,0.8); cursor: pointer; z-index: 5; }
+        /* =========================================
+           5.5 Dual Gallery (รูปคู่ ซ้าย-ขวา)
+           ========================================= */
+        .dual-gallery { 
+            display: flex; 
+            justify-content: center; 
+            gap: 40px; 
+            max-width: 1200px; 
+            margin: 0 auto 8rem auto; 
+            padding: 0 2rem; 
         }
-
-        .stacked-gallery img {
-            width: 100%;
+        .dual-gallery img { 
+            width: calc(50% - 20px); 
             height: auto;
-            max-height: 900px;
-            object-fit: contain;
-            border-radius: 8px;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            object-fit: contain; 
+            border-radius: 8px; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; 
         }
-
-        .stacked-gallery img:hover {
+        .dual-gallery img:hover { 
             transform: translateY(-20px); 
             box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
-            cursor: pointer;
-            z-index: 5;
+            cursor: pointer; 
+            z-index: 5; 
+        }
+
+        /* ทำให้มือถือเรียงซ้อนกันเป็นแนวตั้งเหมือนเดิม */
+        @media (max-width: 768px) {
+            .dual-gallery { flex-direction: column; gap: 40px; margin-bottom: 5rem; }
+            .dual-gallery img { width: 100%; }
         }
 
         /* =========================================
-           7. Menu Grid Gallery (เรียง 3x3)
+           6. Menu Grid Gallery
            ========================================= */
-        .menu-grid-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
-            max-width: 1200px;
-            margin: 0 auto 8rem auto;
-            padding: 0 2rem;
-        }
+        .menu-grid-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto 8rem auto; padding: 0 2rem; }
+        .menu-grid-gallery img { width: 100%; height: auto; object-fit: contain; border-radius: 8px; background-color: var(--text-light); box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; }
+        .menu-grid-gallery img:hover { transform: translateY(-15px); box-shadow: 0 15px 30px rgba(0,0,0,0.6); cursor: pointer; z-index: 2; }
 
-        .menu-grid-gallery img {
+        /* ============================================================== 
+           7. 3D Globe & Stack Event Gallery (แก้ไขใหม่ น้ำเงินเข้ม-ทอง)
+           ============================================================== */
+        .interactive-gallery-section {
+            position: relative;
             width: 100%;
-            height: auto; 
-            object-fit: contain; 
-            border-radius: 8px;
-            background-color: var(--text-light); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            /* พื้นหลังสีน้ำเงินเข้มจัด (Darker Navy) */
+            background-color: var(--bg-darker); 
+            padding-bottom: 5rem;
+            margin-bottom: 8rem;
+            border-radius: 20px;
+            overflow: hidden;
+            /* แสงฟุ้งสีทองจางๆ ตรงกลาง (Radial Gradient) */
+            background-image: radial-gradient(circle at center, rgba(244, 180, 26, 0.15) 0%, transparent 60%);
         }
 
-        .menu-grid-gallery img:hover {
-            transform: translateY(-15px); 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-            cursor: pointer;
-            z-index: 2;
+        /* ปุ่มเลือกมุมมอง (Globe/Stack) */
+        .view-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px 0 80px 0; /* เพิ่มตัวเลขตัวที่สามจาก 0 เป็น 80px เพื่อดันรูปลงไป */
+    z-index: 10;
+    position: relative;
+}
+        .view-btn {
+            /* ปกติ: พื้นหลังใส ขอบและตัวหนังสือสีขาวขุ่น */
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 24px; border-radius: 30px; font-family: 'Prompt', sans-serif; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease;
+        }
+        .view-btn.active, .view-btn:hover {
+            /* Active/Hover: พื้นหลังสีทอง ตัวหนังสือสีน้ำเงินเข้ม แสงฟุ้งทอง */
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--bg-darker);
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(244, 180, 26, 0.6);
         }
 
-        @media (max-width: 768px) {
-            .menu-grid-gallery {
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 15px;
+        /* พื้นที่ 3D Scene */
+        .gallery-scene {
+            width: 100%; height: 600px; perspective: 1200px; display: flex; justify-content: center; align-items: center; cursor: grab;
+        }
+        .gallery-scene:active { cursor: grabbing; }
+
+        .gallery-container {
+            position: relative; width: 0; height: 0; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+        }
+
+        /* จุดศูนย์กลางของแต่ละรูปภาพ */
+        .gallery-item {
+            position: absolute; top: 50%; left: 50%; width: 0; height: 0; 
+            transform-style: preserve-3d; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* ตัวรูปภาพหลัก (เล็ก, ไม่บีบอัด, พื้นหลังน้ำเงิน ขอบขาว) */
+        .gallery-item img {
+            position: absolute; top: 50%; left: 50%;
+            /* ขนาดเล็ก ไม่ครอป ไม่บีบ */
+            max-width: 170px; max-height: 120px; width: auto; height: auto; object-fit: contain;
+            transform: translate(-50%, -50%); /* ดึงให้รูปอยู่ตรงกลางจุดหมุนเป๊ะๆ */
+            border-radius: 4px;
+            
+            /* พื้นหลังน้ำเงินเข้ม ขอบขาวจางๆ */
+            background-color: var(--bg-darker);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            
+            backface-visibility: visible;
+            -webkit-user-drag: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Hover Effect: เอาเมาส์ชี้แล้วเด้ง ขอบสีทอง แสงฟุ้ง (รูปอื่นไม่มืดลง) */
+        @media (hover: hover) {
+            .gallery-item:hover {
+                z-index: 200 !important;
+                cursor: pointer;
             }
-        }
-        @media (max-width: 480px) {
-            .menu-grid-gallery {
-                grid-template-columns: 1fr; 
+            .gallery-item:hover img {
+                /* เด้งขึ้น ขยาย และพุ่งมาหน้าจอ */
+                transform: translate(-50%, calc(-50% - 25px)) scale(1.4) translateZ(50px);
+                /* ขอบทอง & แสงฟุ้งสีทอง */
+                border: 2px solid var(--accent-color);
+                box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 25px rgba(244, 180, 26, 0.6);
             }
         }
 
         /* =========================================
-           8. Event Gallery (Masonry Columns + Vertical Scroll)
-           ========================================= */
-        .event-gallery-wrapper {
-            max-width: 1200px;
-            height: 800px; 
-            margin: 0 auto 8rem auto;
-            padding: 20px;
-            overflow-y: auto; 
-            background-color: #1a1a1a; 
-            border-radius: 12px;
-            border: 1px solid #333;
-        }
-
-        .event-gallery-wrapper::-webkit-scrollbar { width: 10px; }
-        .event-gallery-wrapper::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 10px; }
-        .event-gallery-wrapper::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
-
-        .event-columns {
-            column-count: 4; 
-            column-gap: 20px; 
-        }
-
-        .event-item {
-            break-inside: avoid; 
-            margin-bottom: 20px; 
-        }
-
-        .event-item img {
-            width: 100%; 
-            height: auto; 
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-        }
-
-        .event-item img:hover {
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            cursor: pointer;
-            position: relative; 
-            z-index: 2;
-        }
-
-        @media (max-width: 1024px) {
-            .event-columns { column-count: 3; }
-            .event-gallery-wrapper { height: 600px; }
-        }
-        @media (max-width: 768px) {
-            .event-columns { column-count: 2; }
-        }
-        @media (max-width: 480px) {
-            .event-columns { column-count: 1; } 
-            .event-gallery-wrapper { height: 500px; padding: 10px; }
-        }
-
-        /* =========================================
-           9. Lightbox Modal (คลิกรูปลอยขยายใหญ่)
+           8. Lightbox Modal
            ========================================= */
         .modal {
-            position: fixed;
-            z-index: 9999; 
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); 
-            backdrop-filter: blur(5px); 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0; 
-            pointer-events: none; 
-            transition: opacity 0.3s ease;
+            position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(5, 8, 20, 0.95); /* สีน้ำเงินเข้มโปร่งแสง */
+            display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
-
-        .modal.show {
-            opacity: 1; 
-            pointer-events: auto;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90vh;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            transform: scale(0.8); 
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .modal.show .modal-content {
-            transform: scale(1); 
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: #ffffff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close-modal:hover {
-            color: var(--accent-color); 
-        }
+        .modal.show { opacity: 1; pointer-events: auto; }
+        .modal-content { max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: scale(0.8); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid rgba(255,255,255,0.1); }
+        .modal.show .modal-content { transform: scale(1); }
+        .close-modal { position: absolute; top: 20px; right: 40px; color: #ffffff; font-size: 40px; font-weight: bold; cursor: pointer; transition: color 0.3s ease; }
+        .close-modal:hover { color: var(--accent-color); }
 
         /* =========================================
-           5. Poster Infinite Scroll
+           9. Poster Infinite Scroll
            ========================================= */
         .work-gallery-wrapper {
-            width: 100vw;
-            max-width: 100%;
-            background-color: #121212; 
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 50px 0;
-            margin-bottom: 5rem;
-            border-top: 1px solid #121212;
-            border-bottom: 1px solid #12121222;
+            width: 100vw; max-width: 100%; background-color: var(--bg-dark); position: relative; left: 50%; transform: translateX(-50%);
+            padding: 50px 0; margin-bottom: 5rem; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .work-gallery-horizontal {
-            display: flex;
-            overflow-x: auto; 
-            scroll-behavior: auto; 
-            -webkit-overflow-scrolling: touch;
-        }
+        .work-gallery-horizontal { display: flex; overflow-x: auto; scroll-behavior: auto; -webkit-overflow-scrolling: touch; }
         .work-gallery-horizontal::-webkit-scrollbar { display: none; }
-        .gallery-group {
-            display: flex;
-            gap: 15px;
-            padding-right: 15px;
-            flex-shrink: 0;
-            align-items: center;
-        }
-        .gallery-group img {
-            height: 500px;
-            width: auto;
-            max-width: none;
-            flex-shrink: 0;
-            object-fit: contain;
-            display: block;
-        }
+        .gallery-group { display: flex; gap: 15px; padding-right: 15px; flex-shrink: 0; align-items: center; }
+        .gallery-group img { height: 500px; width: auto; max-width: none; flex-shrink: 0; object-fit: contain; display: block; }
 
         /* =========================================
-           6. Cinema Selects (Redesigned: Modern Grid Cards)
+           10. Cinema Selects
            ========================================= */
-        .cinema-section {
-            background-color: var(--text-light);
-            color: var(--bg-dark);
-            padding: 8rem 2rem;
-            position: relative;
-        }
-        .cinema-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .cinema-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 4rem;
-            border-bottom: 2px solid var(--bg-dark);
-            padding-bottom: 1rem;
-        }
-        .cinema-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 0.9;
-            text-transform: uppercase;
-        }
-        .cinema-subtitle {
-            font-family: 'Prompt', sans-serif;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cinema-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 30px;
-        }
-        .cinema-card {
-            background-color: #f4f4f4;
-            padding: 2.5rem;
-            border-radius: 12px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            border: 1px solid #ddd;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .cinema-card:hover {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            transform: translateY(-10px);
-            border-color: var(--bg-dark);
-        }
+        .cinema-section { background-color: var(--text-light); color: var(--bg-darker); padding: 8rem 2rem; position: relative; }
+        .cinema-container { max-width: 1200px; margin: 0 auto; }
+        .cinema-header { display: flex; justify-content: space-between; align-items:flex-end; margin-bottom: 4rem; border-bottom: 2px solid var(--bg-dark); padding-bottom: 1rem; }
+        .cinema-title { font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 900; line-height: 0.9; text-transform: uppercase; }
+        .cinema-subtitle { font-family: 'Prompt', sans-serif; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-color); }
+        .cinema-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .cinema-card { background-color: #f4f4f4; padding: 2.5rem; border-radius: 12px; transition: transform 0.3s ease, background-color 0.3s ease; border: 1px solid #ddd; display: flex; flex-direction: column; gap: 1rem; }
+        .cinema-card:hover { background-color: var(--bg-darker); color: var(--text-light); transform: translateY(-10px); border-color: var(--bg-darker); }
         .cinema-card:hover .cinema-meta { color: var(--text-gray); }
-        .cinema-card:hover .cinema-mood-tag { background-color: var(--accent-color); color: var(--bg-dark); }
-
-        .film-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            line-height: 1.1;
-        }
-        .cinema-meta {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.9rem;
-            color: #666;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        .cinema-mood-tag {
-            background-color: #ddd;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-        .film-why {
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.1rem;
-            margin-top: auto; 
-            padding-top: 1.5rem;
-            border-top: 1px dashed #ccc;
-        }
+        .cinema-card:hover .cinema-mood-tag { background-color: var(--accent-color); color: var(--bg-darker); }
+        .film-title { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; line-height: 1.1; }
+        .cinema-meta { font-family: 'Prompt', sans-serif; font-size: 0.9rem; color: #666; display: flex; gap: 1rem; align-items: center; }
+        .cinema-mood-tag { background-color: #ddd; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; transition: all 0.3s ease; }
+        .film-why { font-family: 'Prompt', sans-serif; font-size: 1.1rem; margin-top: auto; padding-top: 1.5rem; border-top: 1px dashed #ccc; }
         .cinema-card:hover .film-why { border-color: #555; }
 
         /* =========================================
-           7. CTA & Footer
+           11. CTA & Footer
            ========================================= */
-        .cta-section {
-            background-color: var(--bg-dark);
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            padding: 8rem 2rem;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        .cta-section::before, .cta-section::after {
-            content: '++++++++++++++++++++++++++++++++++++++';
-            position: absolute;
-            left: 0; width: 100%;
-            text-align: center;
-            color: #333;
-            letter-spacing: 10px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .cta-section::before { top: 2rem; }
-        .cta-section::after { bottom: 2rem; }
-
-        .ticket {
-            background-color: var(--accent-color);
-            color: var(--bg-dark);
-            padding: 4rem;
-            text-align: center;
-            width: 100%;
-            max-width: 700px;
-            position: relative;
-            clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
-        }
-        .ticket h2 {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-        .subscribe-btn {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            padding: 12px 40px;
-            border: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            font-family: 'Syne', sans-serif;
-            letter-spacing: 1px;
-        }
+        .cta-section { background-color: var(--bg-dark); background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); padding: 8rem 2rem; display: flex; justify-content: center; position: relative; }
+        .cta-section::before, .cta-section::after { content: '++++++++++++++++++++++++++++++++++++++'; position: absolute; left: 0; width: 100%; text-align: center; color: rgba(255,255,255,0.05); letter-spacing: 10px; overflow: hidden; white-space: nowrap; }
+        .cta-section::before { top: 2rem; } .cta-section::after { bottom: 2rem; }
+        .ticket { background-color: var(--accent-color); color: var(--bg-darker); padding: 4rem; text-align: center; width: 100%; max-width: 700px; position: relative; clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%); }
+        .ticket h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; }
+        .subscribe-btn { background-color: var(--bg-darker); color: var(--text-light); padding: 12px 40px; border: none; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: transform 0.3s ease; font-family: 'Syne', sans-serif; letter-spacing: 1px; }
         .subscribe-btn:hover { transform: scale(1.05); }
 
-        .footer {
-            background-color: var(--bg-darker);
-            padding: 5rem 2rem 2rem;
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 3rem;
-        }
-        .footer-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 0.9;
-            color: #333; 
-        }
-        .footer-links {
-            display: flex;
-            gap: 4rem;
-        }
-        .footer-col h4 {
-            font-family: 'Syne', sans-serif;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-        .footer-col a {
-            display: block;
-            color: var(--text-gray);
-            margin-bottom: 0.8rem;
-            font-family: 'Prompt', sans-serif;
-        }
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 5rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid #222;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #555;
-        }
+        .footer { background-color: #03050a; padding: 5rem 2rem 2rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 3rem; }
+        .footer-title { font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 900; line-height: 0.9; color: var(--text-light); }
+        .footer-links { display: flex; gap: 4rem; }
+        .footer-col h4 { font-family: 'Syne', sans-serif; color: var(--text-light); margin-bottom: 1.5rem; text-transform: uppercase; }
+        .footer-col a { display: block; color: var(--text-gray); margin-bottom: 0.8rem; font-family: 'Prompt', sans-serif; }
+        .footer-bottom { max-width: 1200px; margin: 5rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.8rem; color: var(--text-gray); }
 
         /* =========================================
-           8. Media Queries (Responsive)
+           12. Media Queries (Responsive)
            ========================================= */
         @media (max-width: 1024px) {
-            .project-block, .project-block.reverse {
-                flex-direction: column;
-                gap: 2rem;
-            }
+            .project-block, .project-block.reverse { flex-direction: column; gap: 2rem; }
             .project-text, .project-gallery { flex: auto; width: 100%; }
         }
 
         @media (max-width: 768px) {
             .hero-title { font-size: 20vw; }
-            .nav-tags {
-                top: 10px;
-                left: 50%;
-                transform: translateX(-50%) scale(0.85);
-                transform-origin: top center;
-                width: max-content;
-            }
-
+            .nav-tags { top: 10px; left: 50%; transform: translateX(-50%) scale(0.85); transform-origin: top center; width: max-content; }
             .about-section { padding: 4rem 1.5rem; }
             .about-section::before { display: none; }
             .about-container { padding-left: 0; }
             .about-title { font-size: 3rem; text-align: center; transform: none; }
             .about-text { text-align: center; }
-
             .work-intro .title-rock-salt { font-size: 3.5rem; }
             .work-main-title { font-size: 2rem; }
-            
             .mini-gallery-grid img { height: 200px; }
             .gallery-group img { height: 350px; }
-
+            .globe-scene { height: 450px; }
+            /* มือถือให้รูปเล็กลงอีกนิด */
+            .gallery-item img { max-width: 130px; max-height: 90px; }
             .cinema-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
             .cinema-title { font-size: 3rem; }
             .cinema-grid { grid-template-columns: 1fr; } 
             .cinema-card { padding: 2rem; }
-
             .ticket { padding: 2rem; clip-path: none; border-radius: 20px;}
             .ticket h2 { font-size: 2rem; }
-
             .footer-content { flex-direction: column; }
             .footer-links { flex-wrap: wrap; gap: 2rem; }
         }
@@ -783,9 +457,52 @@
         <div class="stacked-gallery">
             <img src="banners/ป้าย.png" alt="Stacked Image 1">
             <img src="banners/menu.png" alt="Stacked Image 2">
-            <img src="banners/moc.png" alt="Stacked Image 3">
+       
+<div class="split-layout-container" style="display: flex; align-items: flex-start; justify-content: center; gap: 50px; max-width: 1500px; margin: 0 auto 10rem auto; padding: 0 2rem;">   
+    <div class="ig-mask-side" style="flex: 0.9; min-width: 350px; display: flex; flex-direction: column;">
+        <div class="work-intro" style="margin-bottom: 2rem; text-align: center;">
+                        <h2 class="title-rock-salt" style="font-size: 2.2rem; color: #ffffff;">INSTAGRAM</h2>
         </div>
+        
+        <div class="ig-mask-wrapper" style="position: relative; width: 100%; flex-grow: 1; min-height: 620px; overflow: hidden; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255, 255, 255, 0.1);">
+            
+            <style>
+                .ig-mask-wrapper a[href*="elfsight.com"], 
+                .ig-mask-wrapper [class*="Badge__root"],
+                .ig-mask-wrapper [class*="Logo__root"],
+                .ig-mask-wrapper [class*="WidgetTitle__container"] {
+                    display: none !important; opacity: 0 !important; visibility: hidden !important; height: 0 !important; pointer-events: none !important;
+                }
+                .elfsight-app-e6206e2b-6319-4384-9e8d-41023fad72eb {
+                    margin-bottom: -50px !important;
+                }
+            </style>
 
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-e6206e2b-6319-4384-9e8d-41023fad72eb" data-elfsight-app-lazy></div>
+        </div>
+    </div>
+
+   <div class="moc-large-side" style="flex: 2; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+    
+    <div class="moc-wrapper" style="margin-top: 88px; width: 100%; max-width: 650px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.6); transition: transform 0.4s ease;">
+         <img src="banners/moc.png" alt="Rhino Mockup" 
+              style="width: 100%; height: auto; display: block; object-fit: contain;">
+    </div>
+</div>
+    </div>
+
+</div>
+
+<style>
+    @media (max-width: 1100px) {
+        .split-layout-container { flex-direction: column !important; align-items: center !important; gap: 80px !important; }
+        .ig-mask-side, .moc-large-side { width: 100% !important; max-width: 600px; }
+        .ig-mask-wrapper, .moc-wrapper { height: auto !important; min-height: 500px; }
+    }
+</style>
+        </div>
+    
         <div class="work-intro" style="margin-top: -5rem; margin-bottom: -2rem;">
              <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
             <h2 class="title-rock-salt">POSTER</h2>
@@ -829,45 +546,47 @@
             <img src="menu/caramel.png" alt="Menu Item 6">
         </div>
 
-        <div class="work-intro" style="margin-top: 8rem; margin-bottom: 4rem;">
+        <div class="work-intro" style="margin-top: 8rem; margin-bottom: 2rem;">
              <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
             <h2 class="title-rock-salt">EVENT</h2>
              <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
         </div>
 
-        <div class="event-gallery-wrapper">
-            <div class="event-columns">
-                
-                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_57.jpg" alt="Event Photo 1"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_58.jpg" alt="Event Photo 2"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_62.jpg" alt="Event Photo 3"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_55.jpg" alt="Event Photo 4"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_2_260121_118.jpg" alt="Event Photo 5"></div>
-                
-                <div class="event-item"><img src="event/LINE_ALBUM_13169 _1_260121_3.jpg" alt="Event Photo 6"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_13169 _1_260121_15.jpg" alt="Event Photo 7"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_52.jpg" alt="Event Photo 8"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_1.jpg" alt="Event Photo 9"></div>
+        <div class="interactive-gallery-section">
+            
+            <div class="view-controls">
+                <button class="view-btn active" data-view="sphere">3D Gallery</button>
+                <button class="view-btn" data-view="stack">Stack</button>
+            </div>
 
-                <div class="event-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_3.jpg" alt="Event Photo 11"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_5.jpg" alt="Event Photo 12"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_บูธ_260121_27.jpg" alt="Event Photo 13"></div>
-                <div class="event-item"><img src="event/S__15802373.jpg" alt="Event Photo 14"></div>
-                <div class="event-item"><img src="event/S__15802375.jpg" alt="Event Photo 15"></div>
-
-                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_77.jpg" alt="Event Photo 16"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_81.jpg" alt="Event Photo 17"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_84.jpg" alt="Event Photo 18"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_82.jpg" alt="Event Photo 19"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_407.jpg" alt="Event Photo 20"></div>
-                
-                <div class="event-item"><img src="event/LINE_ALBUM_13169_260121_242.jpg" alt="Placeholder Vertical"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_231268_260121_2.jpg" alt="Placeholder Horizontal"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_231268_260121_3.jpg" alt="Placeholder Square"></div>
-                <div class="event-item"><img src="event/LINE_ALBUM_231268_260121_4.jpg" alt="Placeholder Vertical"></div>
-            </div> 
-        </div> 
-    </section>
+            <div class="gallery-scene" id="galleryScene">
+                <div class="gallery-container" id="galleryContainer">
+                    
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_57.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_58.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_62.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_55.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_2_260121_118.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169 _1_260121_3.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169 _1_260121_15.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_52.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_1.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_3.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_ดูพื้นที่รอบ2_260121_5.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_บูธ_260121_27.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/S__15802373.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/S__15802375.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_77.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_81.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_84.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_82.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_407.jpg" alt="Event"></div>
+                    <div class="gallery-item"><img src="event/LINE_ALBUM_13169_260121_242.jpg" alt="Event"></div>
+                    
+                </div>
+            </div>
+        </div>
+        </section>
 
     <section class="cinema-section">
         <div class="cinema-container">
@@ -967,7 +686,194 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. ระบบเลื่อนภาพ Poster อัตโนมัติ (ของเดิม)
+            
+            // 1. Lightbox (คลิกขยายรูป)
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            const closeBtn = document.querySelector(".close-modal");
+            
+            // ให้กดได้ทั้งรูปในกริดเมนู และรูปในลูกโลก 3D
+            const galleryImages = document.querySelectorAll(".menu-grid-gallery img, .gallery-item img");
+
+            if (modal && galleryImages.length > 0) {
+                galleryImages.forEach(img => {
+                    // ผูก Event ไว้ที่ตัวรูปภาพเลย
+                    img.addEventListener('click', function(e) {
+                        if(window.hasDragged) return; // กันบัคกดโดนตอนกำลังลากเมาส์
+                        e.stopPropagation(); // ไม่ให้คลิกทะลุ
+                        modal.classList.add("show"); 
+                        modalImg.src = this.src; 
+                    });
+                });
+
+                closeBtn.addEventListener('click', () => modal.classList.remove("show"));
+                modal.addEventListener('click', (e) => { 
+                    if (e.target !== modalImg) modal.classList.remove("show"); 
+                });
+            }
+
+
+            // ==========================================
+            // 2. ระบบ 3D Interactive Gallery (Globe / Stack Coverflow)
+            // ==========================================
+            const galleryScene = document.getElementById('galleryScene');
+            const galleryContainer = document.getElementById('galleryContainer');
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.view-btn');
+            
+            let currentMode = 'sphere'; 
+            let rotateX = 0;
+            let rotateY = 0;
+            
+            // เก็บข้อมูลตำแหน่งตั้งต้นของแต่ละชิ้นสำหรับโหมด Hover
+            let itemTransforms = []; 
+
+            function updateLayout(mode) {
+                currentMode = mode;
+                const total = items.length;
+
+                // รีเซ็ตมุมมองคอนเทนเนอร์หลักให้ตรงๆ เวลากดเปลี่ยนโหมด
+                if(mode === 'stack') {
+                    rotateX = 0;
+                    rotateY = 0;
+                    galleryContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                }
+
+                items.forEach((item, index) => {
+                    let transformStr = '';
+                    
+                    if (mode === 'sphere') {
+                        // โหมดโลก (Globe) 
+                        const radius = window.innerWidth < 768 ? 200 : 320; 
+                        const y = 1 - (index / (total - 1)) * 2; 
+                        const radiusAtY = Math.sqrt(1 - y * y);
+                        const theta = 2.39996323 * index; 
+
+                        const x = Math.cos(theta) * radiusAtY;
+                        const z = Math.sin(theta) * radiusAtY;
+
+                        const rotY = Math.atan2(x, z) * (180 / Math.PI);
+                        const rotX = Math.asin(-y) * (180 / Math.PI);
+
+                        transformStr = `translate(-50%, -50%) rotateY(${rotY}deg) rotateX(${rotX}deg) translateZ(${radius}px)`;
+                        item.style.zIndex = 1;
+                        
+                    } else if (mode === 'stack') {
+                        // โหมดเรียงซ้อนซ้ายขวาแบบ Coverflow (แน่นๆ)
+                        const gapX = 45; // ระยะห่างแกน X (ลดลงเพื่อให้ซ้อนกันแน่นขึ้น)
+                        const centerIndex = Math.floor(total / 2);
+                        const distanceFromCenter = index - centerIndex;
+                        const offsetX = distanceFromCenter * gapX;
+                        
+                        // สร้างมิติความลึก (Z) ให้ใบที่อยู่ด้านข้างลึกไปข้างหลังเยอะๆ
+                        const depth = 120;
+                        const offsetZ = -Math.abs(distanceFromCenter) * depth; 
+                        
+                        // เอียงใบข้างๆ ให้หันหน้าเข้าตรงกลาง
+                        let rotateYVal = 0;
+                        if(distanceFromCenter < 0) rotateYVal = 50; // ทางซ้ายหันขวา
+                        if(distanceFromCenter > 0) rotateYVal = -50; // ทางขวาหันซ้าย
+
+                        // จัดลำดับ Z-Index ให้ใบที่อยู่ใกล้ตรงกลางอยู่หน้าสุดเสมอ
+                        const zIndex = 100 - Math.abs(distanceFromCenter);
+                        item.style.zIndex = zIndex;
+
+                        transformStr = `translate(-50%, -50%) translate3d(${offsetX}px, 0px, ${offsetZ}px) rotateY(${rotateYVal}deg)`;
+                    }
+
+                    // บันทึกตำแหน่งและสั่งอัปเดต
+                    itemTransforms[index] = transformStr;
+                    item.style.transform = transformStr;
+                    
+                    // Event โฮเวอร์ให้เขียนทับผ่าน JS 
+                    item.onmouseenter = () => {
+                        if (window.hasDragged) return;
+                        // ไม่ต้องสั่งอะไรที่ตัวแม่ ปล่อยให้ CSS จัดการ img ด้านในไป
+                    };
+                });
+            }
+
+            // รันจัดเรียงครั้งแรก
+            updateLayout('sphere');
+
+            // ปุ่มเปลี่ยนมุมมอง
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    updateLayout(e.target.dataset.view);
+                });
+            });
+
+
+            // ---- ระบบลากหมุนจอ (Drag & Rotate) ---- //
+            window.isDraggingGallery = false;
+            window.hasDragged = false;
+            let startX, startY;
+
+            function dragStart(e) {
+                window.isDraggingGallery = true;
+                window.hasDragged = false;
+                startX = e.touches ? e.touches[0].clientX : e.clientX;
+                startY = e.touches ? e.touches[0].clientY : e.clientY;
+                galleryContainer.style.transition = 'none'; // ปิดแอนิเมชั่นตอนลาก
+            }
+
+            function dragMove(e) {
+                if (!window.isDraggingGallery) return;
+                
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                
+                const deltaX = clientX - startX;
+                const deltaY = clientY - startY;
+
+                // เช็คว่าลากจริงไหม (เกิน 3px) ป้องกันคลิกแล้วบัค
+                if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+                    window.hasDragged = true;
+                }
+
+                // ความหนืดในการลาก
+                const speed = currentMode === 'stack' ? 0.2 : 0.4;
+
+                rotateY += deltaX * speed; 
+                rotateX -= deltaY * speed; 
+                
+                // ล็อกมุมแกน X (ขึ้น-ลง) ไม่ให้หมุนตีลังกากลับหัว
+                if(currentMode === 'sphere') {
+                    rotateX = Math.max(-60, Math.min(60, rotateX)); // ล็อกไม่ให้โลกหมุนพลิกกลับด้าน
+                } else if(currentMode === 'stack') {
+                    rotateX = Math.max(-10, Math.min(10, rotateX)); // โหมด stack ล็อกแคบกว่า
+                    rotateY = Math.max(-45, Math.min(45, rotateY)); // โหมด stack ล็อกซ้ายขวานิดหน่อย
+                }
+
+                galleryContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                
+                startX = clientX;
+                startY = clientY;
+                if(e.cancelable) e.preventDefault();
+            }
+
+            function dragEnd() {
+                if (!window.isDraggingGallery) return;
+                window.isDraggingGallery = false;
+                galleryContainer.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }
+
+            galleryScene.addEventListener('mousedown', dragStart);
+            document.addEventListener('mousemove', dragMove); 
+            document.addEventListener('mouseup', dragEnd);
+
+            galleryScene.addEventListener('touchstart', dragStart, {passive: false});
+            document.addEventListener('touchmove', dragMove, {passive: false});
+            document.addEventListener('touchend', dragEnd);
+
+            // คำนวณรัศมีใหม่เวลาย่อขยายหน้าต่าง
+            window.addEventListener('resize', () => { updateLayout(currentMode); });
+            
+            // ==========================================
+            // 3. โค้ดเลื่อนโปสเตอร์ด้านบน (Infinite Slider ของเดิม)
+            // ==========================================
             const slider = document.getElementById('infinite-slider');
             if (slider) {
                 setTimeout(() => { slider.scrollLeft = 1; }, 100);
@@ -975,35 +881,6 @@
                     const halfWidth = slider.scrollWidth / 2;
                     if (slider.scrollLeft >= halfWidth) { slider.scrollLeft -= halfWidth; }
                     else if (slider.scrollLeft <= 0) { slider.scrollLeft += halfWidth; }
-                });
-            }
-
-            // 2. ระบบคลิกขยายรูป (Lightbox)
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("modalImg");
-            const closeBtn = document.querySelector(".close-modal");
-            
-            // เลือกรูปจากทั้งเมนู (3x3) และ Event ให้คลิกได้ทั้งหมด
-            const galleryImages = document.querySelectorAll(".event-item img, .menu-grid-gallery img");
-
-            if (modal && galleryImages.length > 0) {
-                galleryImages.forEach(img => {
-                    img.addEventListener('click', function() {
-                        modal.classList.add("show"); // โชว์กล่อง
-                        modalImg.src = this.src; // เอารูปที่คลิกไปใส่ในกล่อง
-                    });
-                });
-
-                // ปิดเมื่อกดกากบาท
-                closeBtn.addEventListener('click', function() {
-                    modal.classList.remove("show");
-                });
-
-                // ปิดเมื่อคลิกพื้นที่รอบๆ รูป
-                modal.addEventListener('click', function(e) {
-                    if (e.target !== modalImg) {
-                        modal.classList.remove("show");
-                    }
                 });
             }
         });
