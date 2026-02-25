@@ -128,7 +128,7 @@
 
         .hero-title {
             font-family: 'Arial Black', Impact, sans-serif;
-            font-size: clamp(14vw, 21vw, 22vw); /* ใหญ่เต็มจอทุกขนาด */
+            font-size: clamp(4rem, 21vw, 22vw);
             font-weight: 900;
             line-height: 1;
             letter-spacing: -2px;
@@ -313,7 +313,7 @@
 
         .ig-mask-side {
             flex: 0.9;
-            min-width: 0;        /* ไม่บังคับขั้นต่ำ ให้ flex จัดการ */
+            min-width: 280px;
             display: flex;
             flex-direction: column;
         }
@@ -322,7 +322,7 @@
             position: relative;
             width: 100%;
             flex-grow: 1;
-            min-height: 400px;   /* ลดจาก 580px ให้พอดีกับมือถือ */
+            min-height: 580px;
             overflow: hidden;
             border-radius: 12px;
             background: rgba(255,255,255,0.02);
@@ -353,7 +353,7 @@
         }
 
         .moc-wrapper {
-            margin-top: 0;
+            margin-top: 88px;
             width: 100%;
             max-width: 650px;
             border-radius: 12px;
@@ -838,22 +838,18 @@
            12. Responsive Breakpoints
            ========================================= */
 
-        /* --- Tablet (≤1100px) --- คงไว้เป็น row ตลอด --- */
+        /* --- Tablet (≤1100px) --- */
         @media (max-width: 1100px) {
             .split-layout-container {
-                flex-direction: row !important;
-                align-items: flex-start !important;
-                gap: 16px !important;
+                flex-direction: column !important;
+                align-items: center !important;
             }
-            .ig-mask-side {
-                flex: 1 !important;
-                min-width: 0 !important;
+            .ig-mask-side, .moc-large-side {
+                width: 100% !important;
+                max-width: 600px;
+                min-width: unset !important;
             }
-            .moc-large-side {
-                flex: 1 !important;
-                min-width: 0 !important;
-            }
-            .moc-wrapper { margin-top: 0 !important; max-width: 100% !important; }
+            .moc-wrapper { margin-top: 0 !important; }
         }
 
         /* --- Tablet (≤1024px) --- */
@@ -943,7 +939,7 @@
 
     <section class="work-section" id="work">
 
-        <div class="work-intro" style="margin-top: -6rem; margin-bottom: 2rem;">
+        <div class="work-intro" style="margin-top: 2rem; margin-bottom: 2rem;">
             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
             <h2 class="title-rock-salt">WORK</h2>
             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
