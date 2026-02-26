@@ -71,7 +71,7 @@
            ========================================= */
         .hero {
             position: relative;
-            height: 100svh; /* svh = safe viewport height (iOS friendly) */
+            height: 100svh;
             min-height: 500px;
             background-image: url('ytkty.png');
             background-size: cover;
@@ -89,7 +89,7 @@
             background: linear-gradient(to top, var(--bg-dark) 0%, transparent 50%);
         }
 
-        /* Nav Tags — เลื่อนได้บนมือถือ */
+        /* Nav Tags */
         .nav-tags {
             position: absolute;
             top: 16px;
@@ -99,7 +99,6 @@
             gap: 8px;
             z-index: 10;
             white-space: nowrap;
-            /* Scroll หากล้น */
             max-width: calc(100vw - 2rem);
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -121,8 +120,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        .tag:hover { background-color: var(--accent-color); color: var(--bg-dark); border-color: var(--accent-color); }
-        .tag-home { background-color: var(--accent-color); color: var(--bg-dark); border-color: var(--accent-color); }
+        .tag:hover, .tag-home { background-color: var(--accent-color); color: var(--bg-dark); border-color: var(--accent-color); }
 
         .hero-title-wrapper { z-index: 2; }
 
@@ -183,7 +181,7 @@
         .dot-accent { color: var(--accent-color); }
 
         /* =========================================
-           4. Work Section
+           4. Work Section Utilities
            ========================================= */
         .work-section {
             background-color: var(--bg-dark);
@@ -194,7 +192,7 @@
         .work-intro {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto 4rem auto;
+            margin: 0 auto;
             padding: 0 var(--space-sm);
             position: relative;
             z-index: 2;
@@ -209,35 +207,22 @@
 
         .title-rock-salt {
             font-family: 'Rock Salt', cursive;
-            font-size: clamp(2rem, 7vw, 4rem);
+            font-size: clamp(1.5rem, 5vw, 4rem);
             color: #ffffff;
             transform: rotate(-3deg);
             display: inline-block;
             margin: 0;
         }
 
-        /* Project Block (Text + Gallery side by side) */
-        .project-block {
-            display: flex;
-            align-items: center;
-            gap: clamp(1.5rem, 4vw, 4rem);
-            max-width: 1300px;
-            margin: 0 auto 3rem auto;
-            padding: 0 var(--space-sm);
-        }
-        .project-block.reverse { flex-direction: row-reverse; }
-
-        .project-text { flex: 1; min-width: 0; }
-        .project-gallery { flex: 1.5; min-width: 0; }
-
         .work-main-title {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            font-size: clamp(1.3rem, 3.5vw, 2.8rem);
             font-weight: 800;
             text-transform: uppercase;
             line-height: 1.2;
             margin-bottom: 1rem;
             color: var(--text-light);
+            letter-spacing: 1px;
         }
 
         .work-desc {
@@ -248,6 +233,47 @@
             font-weight: 300;
         }
 
+        /* Generic Project Layouts */
+        .project-block {
+            display: flex;
+            align-items: center;
+            gap: clamp(1.5rem, 4vw, 4rem);
+            max-width: 1300px;
+            margin: 0 auto 3rem auto;
+            padding: 0 var(--space-sm);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+            align-items: center;
+        }
+
+        .feature-text-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        .feature-logos {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .project-text { flex: 1; min-width: 0; }
+        .project-gallery { flex: 1.5; min-width: 0; }
+
         .mini-gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -256,9 +282,9 @@
 
         .mini-gallery-grid img {
             width: 100%;
-            aspect-ratio: 1 / 1;    /* ทุกช่องสูงเท่ากัน เป็นสี่เหลี่ยมจัตุรัส */
-            object-fit: contain;    /* แสดงรูปเต็มไม่ครอป */
-            background-color: rgba(255,255,255,0.03); /* พื้นหลังจางๆ กันช่องว่างโล่ง */
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background-color: rgba(255,255,255,0.03);
             border-radius: 4px;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: grayscale(30%);
@@ -272,9 +298,6 @@
             border-color: var(--accent-color);
         }
 
-        /* =========================================
-           5. Stacked Gallery
-           ========================================= */
         .stacked-gallery {
             display: flex;
             flex-direction: column;
@@ -292,22 +315,20 @@
             border-radius: 8px;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
         }
-        .stacked-gallery img:hover {
+        .stacked-gallery img:hover, .dual-gallery img:hover {
             transform: translateY(-20px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             cursor: pointer;
         }
 
-        /* =========================================
-           5.5 Split Layout (Instagram + Mockup)
-           ========================================= */
+        /* Split Layout (IG + Mockup) */
         .split-layout-container {
             display: flex;
             align-items: flex-start;
             justify-content: center;
             gap: clamp(1.5rem, 4vw, 50px);
             max-width: 1500px;
-            margin: 0 auto 6rem auto;
+            margin: 4rem auto 6rem auto;
             padding: 0 var(--space-sm);
         }
 
@@ -363,7 +384,6 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
             transition: transform 0.4s ease;
         }
-
         .moc-wrapper img {
             width: 100%;
             height: auto;
@@ -371,43 +391,28 @@
             object-fit: contain;
         }
 
-        /* =========================================
-           5.6 Dual Gallery
-           ========================================= */
+        /* Dual Gallery */
         .dual-gallery {
             display: flex;
             justify-content: center;
             gap: 30px;
             max-width: 1200px;
-            margin: 0 auto 6rem auto;
+            margin: 5rem auto 6rem auto;
             padding: 0 var(--space-sm);
+            align-items: center;
         }
+        .dual-gallery img:first-child { width: 35%; border-radius: 12px; object-fit: contain; }
+        .dual-gallery img:last-child { width: 65%; border-radius: 12px; object-fit: contain; }
 
-        .dual-gallery img {
-            width: calc(50% - 15px);
-            height: auto;
-            object-fit: contain;
-            border-radius: 8px;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-        }
-        .dual-gallery img:hover {
-            transform: translateY(-20px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            cursor: pointer;
-        }
-
-        /* =========================================
-           6. Menu Grid Gallery
-           ========================================= */
+        /* Menu Grid Gallery */
         .menu-grid-gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 คอลัมน์เสมอ */
+            grid-template-columns: repeat(3, 1fr);
             gap: clamp(10px, 2vw, 30px);
             max-width: 1200px;
             margin: 0 auto 6rem auto;
             padding: 0 var(--space-sm);
         }
-
         .menu-grid-gallery img {
             width: 100%;
             height: auto;
@@ -424,7 +429,138 @@
         }
 
         /* =========================================
-           7. Interactive 3D Gallery (Globe / Stack)
+           5. Competitions Layout (Video + Gallery)
+           ========================================= */
+        .comp-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 4rem auto 6rem auto;
+            padding: 0 var(--space-sm);
+            align-items: start;
+        }
+        
+        .comp-video-col {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .comp-video-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .comp-video-header h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .comp-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177.78%; /* 9:16 Aspect Ratio */
+            height: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .comp-video-slider {
+            position: absolute;
+            bottom: 15px;
+            left: 5%;
+            width: 90%;
+            z-index: 10;
+        }
+        .comp-video-slider input {
+            width: 100%;
+            height: 3px;
+            -webkit-appearance: none;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .comp-video-slider input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+        }
+        .comp-video-slider input::-webkit-slider-thumb:hover { transform: scale(1.5); }
+        .comp-video-slider input::-moz-range-thumb {
+            width: 10px; height: 10px; border: none; border-radius: 50%; background: var(--accent-color);
+            cursor: pointer; box-shadow: 0 0 5px rgba(0,0,0,0.5); transition: transform 0.2s;
+        }
+        .comp-video-slider input::-moz-range-thumb:hover { transform: scale(1.5); }
+
+        .comp-gallery-col {
+            width: 100%;
+            padding-left: 40px;
+        }
+
+        .comp-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .comp-gallery-img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+            display: block;
+        }
+        .comp-gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            border-color: var(--accent-color);
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Hover Effects */
+        .logo-box-hover {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border 0.4s ease;
+            cursor: pointer;
+        }
+        .logo-box-hover:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.3) !important;
+        }
+
+        .product-hover-img {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease !important;
+            cursor: pointer;
+        }
+        .product-hover-img:hover {
+            transform: translateY(-20px) !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8) !important;
+        }
+
+        /* =========================================
+           6. Interactive 3D Gallery & Poster Scroll
            ========================================= */
         .interactive-gallery-section {
             position: relative;
@@ -521,8 +657,48 @@
             }
         }
 
+        /* Poster Infinite Scroll */
+        .work-gallery-wrapper {
+            width: 100vw;
+            max-width: 100%;
+            background-color: var(--bg-dark);
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 40px 0;
+            margin-bottom: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+        }
+
+        .work-gallery-horizontal {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .work-gallery-horizontal::-webkit-scrollbar { display: none; }
+
+        .gallery-group {
+            display: flex;
+            gap: 12px;
+            padding-right: 12px;
+            flex-shrink: 0;
+            align-items: center;
+        }
+
+        .gallery-group img {
+            height: clamp(250px, 40vw, 500px);
+            width: auto;
+            max-width: none;
+            flex-shrink: 0;
+            object-fit: contain;
+            display: block;
+        }
+
         /* =========================================
-           8. Lightbox Modal
+           7. Lightbox Modal
            ========================================= */
         .modal {
             position: fixed;
@@ -567,49 +743,7 @@
         .close-modal:hover { color: var(--accent-color); }
 
         /* =========================================
-           9. Poster Infinite Scroll
-           ========================================= */
-        .work-gallery-wrapper {
-            width: 100vw;
-            max-width: 100%;
-            background-color: var(--bg-dark);
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 40px 0;
-            margin-bottom: 4rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            overflow: hidden;
-        }
-
-        .work-gallery-horizontal {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        .work-gallery-horizontal::-webkit-scrollbar { display: none; }
-
-        .gallery-group {
-            display: flex;
-            gap: 12px;
-            padding-right: 12px;
-            flex-shrink: 0;
-            align-items: center;
-        }
-
-        .gallery-group img {
-            height: clamp(250px, 40vw, 500px);
-            width: auto;
-            max-width: none;
-            flex-shrink: 0;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* =========================================
-           10. Cinema Selects
+           8. Cinema Selects
            ========================================= */
         .cinema-section {
             background-color: var(--text-light);
@@ -710,7 +844,7 @@
         .cinema-card:hover .film-why { border-color: #555; }
 
         /* =========================================
-           11. CTA & Footer
+           9. CTA & Footer
            ========================================= */
         .cta-section {
             background-color: var(--bg-dark);
@@ -744,7 +878,6 @@
             border-radius: 16px;
         }
 
-        /* clip-path only on larger screens */
         @media (min-width: 600px) {
             .ticket {
                 clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
@@ -782,7 +915,6 @@
         }
         .subscribe-btn:hover { transform: scale(1.05); }
 
-        /* Footer */
         .footer {
             background-color: #03050a;
             padding: var(--space-lg) var(--space-sm) 2rem;
@@ -835,7 +967,7 @@
         }
 
         /* =========================================
-           12. Responsive Breakpoints
+           10. Responsive Breakpoints
            ========================================= */
 
         /* --- Tablet (≤1100px) --- */
@@ -857,46 +989,48 @@
             .project-block,
             .project-block.reverse { flex-direction: column; gap: 2rem; }
             .project-text, .project-gallery { flex: auto; width: 100%; }
+            .feature-grid { grid-template-columns: 1fr; }
         }
 
         /* --- Mobile (≤768px) --- */
         @media (max-width: 768px) {
-            /* About */
             .about-section::before { display: none; }
             .about-container { padding-left: 0; }
             .about-title { transform: none; text-align: center; }
             .about-text { text-align: center; }
+            
+            /* Competitions Layout Mobile Fixes */
+            .comp-layout { grid-template-columns: 1fr; gap: 20px; align-items: center; }
+            .comp-video-col { align-items: center; }
+            .comp-video-wrapper { max-width: 350px; }
+            .comp-gallery-col { padding-left: 0; margin-top: 1.5rem; }
+            
+            /* Logo Group Mobile Fixes */
+            .feature-logos { flex-direction: column; align-items: stretch; text-align: center; }
 
-            /* Mini gallery: คง 3 คอลัมน์เสมอ */
-
-            /* Menu grid: คงไว้ 3 คอลัมน์เสมอ ไม่ลดบนมือถือ */
-
-            /* Dual gallery: stack vertically */
-            .dual-gallery { flex-direction: column; gap: 30px; }
-            .dual-gallery img { width: 100%; }
-
-            /* Cinema grid: single column */
+            .dual-gallery { flex-direction: column; gap: 30px; margin-top: 3rem; }
+            .dual-gallery img:first-child, .dual-gallery img:last-child { width: 100%; }
+            
             .cinema-grid { grid-template-columns: 1fr; }
             .cinema-header { flex-direction: column; align-items: flex-start; }
-
-            /* Footer */
             .footer-content { flex-direction: column; }
             .footer-links { flex-wrap: wrap; gap: 2rem; }
+            
+            /* Menu and Gallery spacing */
+            .menu-grid-gallery { gap: 10px; }
+            .comp-gallery-grid { gap: 8px; }
         }
 
         /* --- Small Mobile (≤480px) --- */
         @media (max-width: 480px) {
             .hero-title { letter-spacing: -1px; }
-            /* mini-gallery-grid: คง 3 คอลัมน์ ไม่ลดที่นี่ */
             .title-rock-salt { font-size: 1.8rem; }
             .work-intro { margin-bottom: 2.5rem; }
-
             .gallery-scene { height: 350px; }
             .gallery-item img {
                 max-width: 80px;
                 max-height: 56px;
             }
-
             .cinema-card { padding: 1.25rem; }
         }
     </style>
@@ -949,7 +1083,7 @@
             <div class="project-text">
                 <h3 class="work-main-title">RHINO x RMUTK <br>SMART CAFÉ</h3>
                 <p class="work-desc">
-                    ผลงานการออกแบบแบรนดิ้งและภาพลักษณ์แบรนด์ สำหรับโปรเจกต์ร้านกาแฟ Food Truck "Rhino x RMUTK" ผมรับหน้าที่ดูแลงานออกแบบกราฟิกทั้งหมด ตั้งแต่การทำโลโก้ ไปจนถึงสื่อโฆษณาและเมนูซิกเนเจอร์อย่าง 'Rhino Monster' ผสมผสานแนวคิดทางธุรกิจเข้ากับงานดีไซน์ เพื่อสร้างแบรนด์ที่เข้าถึงง่ายและเป็นที่จดจำ
+                    ผลงานการออกแบบแบรนดิ้งและภาพลักษณ์แบรนด์ สำหรับโปรเจกต์ร้านกาแฟ Food Truck "Rhino x RMUTK" ผมรับหน้าที่ดูแลงานออกแบบกราฟิกทั้งหมด ตั้งแต่การทำโลโก ไปจนถึงสื่อโฆษณาและเมนูซิกเนเจอร์อย่าง 'Rhino Monster' ผสมผสานแนวคิดทางธุรกิจเข้ากับงานดีไซน์ เพื่อสร้างแบรนด์ที่เข้าถึงง่ายและเป็นที่จดจำ
                 </p>
             </div>
             <div class="project-gallery">
@@ -966,7 +1100,6 @@
             <img src="banners/menu.png" alt="Stacked Image 2">
         </div>
 
-        <!-- Split: Instagram Widget + Mockup -->
         <div class="split-layout-container" style="margin-top: 4rem;">
 
             <div class="ig-mask-side">
@@ -987,7 +1120,6 @@
 
         </div>
 
-        <!-- POSTER -->
         <div class="work-intro" style="margin-top: 2rem; margin-bottom: -2rem;">
             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
             <h2 class="title-rock-salt">POSTER</h2>
@@ -1015,7 +1147,6 @@
             </div>
         </div>
 
-        <!-- MENU -->
         <div class="work-intro" style="margin-top: -3rem; margin-bottom: 3rem;">
             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
             <h2 class="title-rock-salt">MENU</h2>
@@ -1031,7 +1162,6 @@
             <img src="menu/caramel.png" alt="Menu Item 6">
         </div>
 
-        <!-- EVENT -->
         <div class="work-intro" style="margin-top: 4rem; margin-bottom: 2rem;">
             <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
             <h2 class="title-rock-salt">EVENT</h2>
@@ -1041,7 +1171,7 @@
         <div class="interactive-gallery-section">
             <div class="view-controls">
                 <button class="view-btn active" data-view="sphere">3D Gallery</button>
-                <button class="view-btn" data-view="stack">Stack</button>
+                <button class="view-btn" data-view="list">List</button> 
             </div>
 
             <div class="gallery-scene" id="galleryScene">
@@ -1069,10 +1199,154 @@
                 </div>
             </div>
         </div>
+        
+        <div class="work-intro" style="margin-top: 6rem; margin-bottom: 2rem;">
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt" style="font-size: clamp(1.5rem, 4vw, 2.2rem);">LUXAFLORA</h2>
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
 
+        <div class="feature-grid">
+            <div style="display: flex; justify-content: center;">
+                <img src="marketing/SFA1.png" alt="Luxaflora Delight Products" 
+                     class="product-hover-img" 
+                     style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.6);">
+            </div>
+
+            <div class="feature-text-col">
+                <h3 class="work-main-title">
+                    LUXAFLORA<br>DELIGHT
+                </h3>
+
+                <p class="work-desc" style="text-align: left; margin: 0; max-width: 600px;">
+                    โปรเจกต์วิชาการตลาดที่ได้สร้างสรรค์และปั้นแบรนด์น้ำยาปรับผ้านุ่มสมุนไพร "Luxaflora Delight" ขึ้นมาใหม่ โดยผมรับหน้าที่หลักในการวางคอนเซปต์และดูแล Visual Design ทั้งหมด ตั้งแต่การคิดชื่อแบรนด์, ออกแบบโลโก้ตัว 'L' ที่ให้ความรู้สึกหรูหรา พริ้วไหว และเป็นธรรมชาติ รวมถึงการออกแบบบรรจุภัณฑ์ (Packaging) ทั้ง 3 สูตร นอกจากนี้ยังได้จำลองภาพลักษณ์ของแบรนด์เมื่อนำไปใช้ทำการตลาดบน Social Media (Facebook & Instagram) เพื่อให้เห็นภาพรวมของแคมเปญที่เข้าถึงกลุ่มเป้าหมายได้อย่างชัดเจน
+                </p>
+
+                <div class="feature-logos">
+                    <div class="logo-box-hover" style="flex: 2; background-color: #03050a; padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: center; align-items: center;">
+                        <img src="marketing/luxaflora.png" alt="Full Logo" style="width: 100%; max-height: 45px; object-fit: contain;">
+                    </div>
+                    
+                    <div class="logo-box-hover" style="flex: 1; background-color: #03050a; padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: center; align-items: center;">
+                        <img src="marketing/Rectangle-3-copy.png" alt="L Icon" style="width: 100%; max-height: 45px; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dual-gallery">
+            <img src="marketing/AFA1.png" alt="Instagram Marketing Mockup">
+            <img src="marketing/Facebook.png" alt="Facebook Marketing Mockup">
+        </div>
+
+        <div class="work-intro" style="margin-top: 3rem; margin-bottom: 2rem;">
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt" style="font-size: clamp(1.5rem, 4vw, 2.2rem);">LOGO DESIGN</h2>
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="project-block">
+            <div class="project-text">
+                <h3 class="work-main-title">DIGITAL STARTUP <br>IDENTITY</h3>
+                <p class="work-desc">
+                    ผลงานการออกแบบตราสัญลักษณ์ (Logo) ประจำสาขาวิชา Digital Startup (DS) โดยเน้นภาพลักษณ์ที่ทันสมัย สะท้อนถึงนวัตกรรมและโลกธุรกิจยุคใหม่ ดีไซน์ด้วยรูปทรงหกเหลี่ยม (Hexagon) ที่สื่อถึงความแข็งแกร่งและการเชื่อมต่อของเครือข่ายธุรกิจ (Network) ผสานตัวอักษรย่อ 'DS' เข้าด้วยกันอย่างลงตัว เลือกใช้คู่สีส้ม-ดำ เพื่อสื่อถึงพลัง ความคิดสร้างสรรค์ และความเป็นมืออาชีพ
+                </p>
+            </div>
+            <div class="project-gallery" style="display: flex; justify-content: center; align-items: center;">
+                <img src="digital.png" alt="Digital Startup Logo" class="product-hover-img" 
+                     style="width: 100%; max-width: 350px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); object-fit: contain;">
+            </div>
+        </div>
+        
+        <div class="work-intro" style="margin-top: 6rem; margin-bottom: 3rem;">
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+            <h2 class="title-rock-salt" style="font-size: clamp(1.5rem, 4vw, 2.2rem);">COMPETITIONS</h2>
+            <div class="cross-decor">+ &nbsp; + &nbsp; + &nbsp; + &nbsp; + &nbsp; +</div>
+        </div>
+
+        <div class="feature-grid" style="margin-top: 0; margin-bottom: 4rem;">
+            <div class="feature-text-col">
+                <h3 class="work-main-title">MARKETING<br>EXCELLENCE</h3>
+                <p class="work-desc" style="text-align: left; margin: 0; max-width: 600px;">
+                    ได้รับคัดเลือกเป็นตัวแทนของสาขา Digital Startup เข้าร่วม <span style="color: #fff; font-weight: 400;">"โครงการการแข่งขันสุดยอดทางการตลาด"</span> จัดโดยคณะบริหารธุรกิจ มหาวิทยาลัยเทคโนโลยีราชมงคลกรุงเทพ ซึ่งมีการจัดการแข่งขันใน 2 กิจกรรมหลัก คือ การแข่งขันศิลปะการขาย และการแข่งขันออกแบบผลิตภัณฑ์และบรรจุภัณฑ์
+                </p>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 5px;">
+                    <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-color); padding: 15px 20px; border-radius: 0 8px 8px 0;">
+                        <h4 style="font-family: 'Prompt', sans-serif; color: var(--accent-color); font-size: 1rem; margin-bottom: 5px;">1. การแข่งขันออกแบบผลิตภัณฑ์และบรรจุภัณฑ์</h4>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-color); padding: 15px 20px; border-radius: 0 8px 8px 0;">
+                        <h4 style="font-family: 'Prompt', sans-serif; color: var(--accent-color); font-size: 1rem; margin-bottom: 5px;">2. การแข่งขันศิลปะการขาย</h4>
+                    </div>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 5px;">
+                    <div style="background: rgba(244, 180, 26, 0.1); border-left: 3px solid var(--accent-color); padding: 15px 20px; border-radius: 0 8px 8px 0; border: 1px solid rgba(244, 180, 26, 0.2);">
+                        <p class="work-desc" style="margin: 0; color: #fff;">
+                            <span style="color: var(--accent-color); font-weight: 600;">สิ่งที่ทำให้ผมภูมิใจกับผลงานชิ้นนี้มากที่สุดคือ เป็นการแข่งขันที่กะทันหันมากครับ ผมมีเวลาเตรียมตัวเพียงแค่ 1 วันเท่านั้น</span> ผมและเพื่อนได้นำทักษะด้าน Graphic & Packaging Design มาประยุกต์ใช้อย่างเต็มศักยภาพ โดยไม่ได้มองแค่ความสวยงาม แต่เน้นการสร้างสรรค์ที่ตอบโจทย์การตลาดได้จริง ดีไซน์ของเราตอบโจทย์ผู้บริโภค คุ้มค่าต้นทุน และสามารถนำไปต่อยอดทางธุรกิจได้จริง
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; position: relative;">
+                <img src="competitions/1741063042402.jpeg" alt="Certificate" class="product-hover-img" style="width: 100%; max-width: 550px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.6);">
+            </div>
+        </div>
+
+        <div class="comp-layout">
+            
+            <div class="comp-video-col">
+                <div class="comp-video-header">
+                    <h4>Announcement of awards</h4>
+                </div>
+                
+                <div class="comp-video-wrapper">
+                    <video id="compVideo" onclick="this.paused ? this.play() : this.pause()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; cursor: pointer;">
+                        <source src="competitions/bigitaltall_3571390305603899170.mp4" type="video/mp4">
+                    </video>
+                    
+                    <div class="comp-video-slider">
+                        <input type="range" id="compSlider" min="0" max="100" value="0" step="0.1">
+                    </div>
+                    
+                    <script>
+                        const video = document.getElementById('compVideo');
+                        const slider = document.getElementById('compSlider');
+                        
+                        if(video && slider) {
+                            video.addEventListener('timeupdate', () => {
+                                const progress = (video.currentTime / video.duration) * 100;
+                                slider.value = progress;
+                                slider.style.background = `linear-gradient(to right, var(--accent-color) ${progress}%, rgba(255,255,255,0.3) ${progress}%)`;
+                            });
+
+                            slider.addEventListener('input', (e) => {
+                                const scrubTime = (e.target.value / 100) * video.duration;
+                                video.currentTime = scrubTime;
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div class="comp-gallery-col">
+                <div class="comp-gallery-grid">
+                    <img src="competitions/1741063030455.jpeg" alt="Activity 1" class="comp-gallery-img">
+                    <img src="competitions/1741063035413.jpeg" alt="Activity 2" class="comp-gallery-img">
+                    <img src="competitions/1741063198337.jpeg" alt="Activity 3" class="comp-gallery-img">
+                    <img src="competitions/1741063165531.jpeg" alt="Activity 4" class="comp-gallery-img">
+                    <img src="competitions/1741063148842.jpeg" alt="Activity 5" class="comp-gallery-img">
+                    <img src="competitions/1741063123010.jpeg" alt="Activity 6" class="comp-gallery-img">
+                    <img src="competitions/Screenshot_2025-02-19-15-45-26-39_e2d5b3f32b79de1d45acd1fad96fbb0f.jpeg" alt="Activity 7" class="comp-gallery-img">
+                    <img src="competitions/product/1739975048724.jpeg" alt="Activity 8" class="comp-gallery-img">
+                    <img src="competitions/product/1739975046052.jpeg" alt="Activity 9" class="comp-gallery-img">
+                </div>
+            </div>
+            
+        </div>
     </section>
 
-    <!-- Cinema Selects -->
     <section class="cinema-section">
         <div class="cinema-container">
             <div class="cinema-header">
@@ -1124,7 +1398,6 @@
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-section">
         <div class="ticket">
             <h2 class="font-rock">TUNE INTO THE SIGNAL</h2>
@@ -1133,7 +1406,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div>
@@ -1160,7 +1432,6 @@
         </div>
     </footer>
 
-    <!-- Lightbox Modal -->
     <div id="imageModal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="modalImg" alt="Enlarged view">
@@ -1175,8 +1446,8 @@
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("modalImg");
             const closeBtn = document.querySelector(".close-modal");
-            const galleryImages = document.querySelectorAll(".menu-grid-gallery img, .gallery-item img");
-
+            const galleryImages = document.querySelectorAll(".menu-grid-gallery img, .gallery-item img, .comp-gallery-img");
+            
             if (modal && galleryImages.length > 0) {
                 galleryImages.forEach(img => {
                     img.addEventListener('click', function (e) {
@@ -1190,14 +1461,13 @@
                 modal.addEventListener('click', (e) => {
                     if (e.target !== modalImg) modal.classList.remove("show");
                 });
-                // Close with Escape key
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') modal.classList.remove("show");
                 });
             }
 
             // ==========================================
-            // 2. 3D Interactive Gallery (Globe / Stack)
+            // 2. 3D Interactive Gallery (Globe / List)
             // ==========================================
             const galleryScene = document.getElementById('galleryScene');
             const galleryContainer = document.getElementById('galleryContainer');
@@ -1219,7 +1489,7 @@
                 currentMode = mode;
                 const total = items.length;
 
-                if (mode === 'stack') {
+                if (mode === 'list') {
                     rotateX = 0;
                     rotateY = 0;
                     galleryContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
@@ -1240,105 +1510,107 @@
                         transformStr = `translate(-50%, -50%) rotateY(${rotY}deg) rotateX(${rotXVal}deg) translateZ(${radius}px)`;
                         item.style.zIndex = 1;
 
-                    } else if (mode === 'stack') {
-                        const gapX = window.innerWidth < 768 ? 30 : 45;
-                        const centerIndex = Math.floor(total / 2);
-                        const distanceFromCenter = index - centerIndex;
-                        const offsetX = distanceFromCenter * gapX;
-                        const depth = 120;
-                        const offsetZ = -Math.abs(distanceFromCenter) * depth;
-                        let rotateYVal = 0;
-                        if (distanceFromCenter < 0) rotateYVal = 50;
-                        if (distanceFromCenter > 0) rotateYVal = -50;
-                        const zIndex = 100 - Math.abs(distanceFromCenter);
-                        item.style.zIndex = zIndex;
-                        transformStr = `translate(-50%, -50%) translate3d(${offsetX}px, 0px, ${offsetZ}px) rotateY(${rotateYVal}deg)`;
+                    } else if (mode === 'list') {
+                        const cols = 5; 
+                        const rows = Math.ceil(total / cols); 
+                        
+                        const gapX = window.innerWidth < 768 ? 95 : 180;
+                        const gapY = window.innerWidth < 768 ? 75 : 130;
+
+                        const col = index % cols;
+                        const row = Math.floor(index / cols);
+
+                        const offsetX = (col - (cols - 1) / 2) * gapX;
+                        const offsetY = (row - (rows - 1) / 2) * gapY;
+
+                        item.style.zIndex = 1;
+                        transformStr = `translate(-50%, -50%) translate3d(${offsetX}px, ${offsetY}px, 0px)`;
                     }
 
                     item.style.transform = transformStr;
                 });
             }
 
-            updateLayout('sphere');
+            if (galleryScene && galleryContainer) {
+                updateLayout('sphere');
 
-            buttons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    buttons.forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    updateLayout(e.target.dataset.view);
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        buttons.forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        updateLayout(e.target.dataset.view);
+                    });
                 });
-            });
 
-            // Drag & Rotate
-            window.isDraggingGallery = false;
-            window.hasDragged = false;
-            let startX, startY;
-
-            function dragStart(e) {
-                window.isDraggingGallery = true;
-                window.hasDragged = false;
-                startX = e.touches ? e.touches[0].clientX : e.clientX;
-                startY = e.touches ? e.touches[0].clientY : e.clientY;
-                galleryContainer.style.transition = 'none';
-            }
-
-            function dragMove(e) {
-                if (!window.isDraggingGallery) return;
-                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-                const deltaX = clientX - startX;
-                const deltaY = clientY - startY;
-
-                if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
-                    window.hasDragged = true;
-                }
-
-                const speed = currentMode === 'stack' ? 0.2 : 0.4;
-                rotateY += deltaX * speed;
-                rotateX -= deltaY * speed;
-
-                if (currentMode === 'sphere') {
-                    rotateX = Math.max(-60, Math.min(60, rotateX));
-                } else if (currentMode === 'stack') {
-                    rotateX = Math.max(-10, Math.min(10, rotateX));
-                    rotateY = Math.max(-45, Math.min(45, rotateY));
-                }
-
-                galleryContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                startX = clientX;
-                startY = clientY;
-                if (e.cancelable) e.preventDefault();
-            }
-
-            function dragEnd() {
-                if (!window.isDraggingGallery) return;
                 window.isDraggingGallery = false;
-                galleryContainer.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                window.hasDragged = false;
+                let startX, startY;
+
+                function dragStart(e) {
+                    window.isDraggingGallery = true;
+                    window.hasDragged = false;
+                    startX = e.touches ? e.touches[0].clientX : e.clientX;
+                    startY = e.touches ? e.touches[0].clientY : e.clientY;
+                    galleryContainer.style.transition = 'none';
+                }
+
+                function dragMove(e) {
+                    if (!window.isDraggingGallery) return;
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    const deltaX = clientX - startX;
+                    const deltaY = clientY - startY;
+
+                    if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+                        window.hasDragged = true;
+                    }
+
+                    const speed = 0.4; 
+                    rotateY += deltaX * speed;
+                    rotateX -= deltaY * speed;
+
+                    if (currentMode === 'sphere') {
+                        rotateX = Math.max(-60, Math.min(60, rotateX)); 
+                    } else if (currentMode === 'list') {
+                        rotateX = Math.max(-40, Math.min(40, rotateX));
+                        rotateY = Math.max(-60, Math.min(60, rotateY));
+                    }
+
+                    galleryContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    startX = clientX;
+                    startY = clientY;
+                    if (e.cancelable) e.preventDefault();
+                }
+
+                function dragEnd() {
+                    if (!window.isDraggingGallery) return;
+                    window.isDraggingGallery = false;
+                    galleryContainer.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }
+
+                galleryScene.addEventListener('mousedown', dragStart);
+                document.addEventListener('mousemove', dragMove);
+                document.addEventListener('mouseup', dragEnd);
+                galleryScene.addEventListener('touchstart', dragStart, { passive: false });
+                document.addEventListener('touchmove', dragMove, { passive: false });
+                document.addEventListener('touchend', dragEnd);
+
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => updateLayout(currentMode), 150);
+                });
             }
-
-            galleryScene.addEventListener('mousedown', dragStart);
-            document.addEventListener('mousemove', dragMove);
-            document.addEventListener('mouseup', dragEnd);
-            galleryScene.addEventListener('touchstart', dragStart, { passive: false });
-            document.addEventListener('touchmove', dragMove, { passive: false });
-            document.addEventListener('touchend', dragEnd);
-
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => updateLayout(currentMode), 150);
-            });
 
             // ==========================================
-            // 3. Infinite Poster Slider (Auto-scroll)
+            // 3. Infinite Poster Slider
             // ==========================================
             const slider = document.getElementById('infinite-slider');
             if (slider) {
-                let scrollSpeed = 0.8; // px per frame
+                let scrollSpeed = 0.8; 
                 let isUserScrolling = false;
                 let userScrollTimer;
 
-                // Auto-scroll animation
                 function autoScroll() {
                     if (!isUserScrolling) {
                         slider.scrollLeft += scrollSpeed;
@@ -1350,7 +1622,6 @@
                     requestAnimationFrame(autoScroll);
                 }
 
-                // Pause auto-scroll when user manually scrolls
                 slider.addEventListener('scroll', function () {
                     const halfWidth = slider.scrollWidth / 2;
                     if (slider.scrollLeft >= halfWidth) slider.scrollLeft -= halfWidth;
@@ -1371,9 +1642,7 @@
                     requestAnimationFrame(autoScroll);
                 }, 200);
             }
-
         });
     </script>
-
 </body>
 </html>
